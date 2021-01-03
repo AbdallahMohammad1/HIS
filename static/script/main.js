@@ -30,7 +30,7 @@ $(function(){
     },function(){
         show_field.attr('type','password');
     });
-    $(".confirm").click(function(){
+    $("#confirm").click(function(){
         return confirm("Are You Sure?");
     });
 

@@ -1,4 +1,4 @@
-from flask import Flask, render_template ,request,url_for #import flask class
+from flask import Flask, render_template ,request,url_for,redirect,flash #import flask class
 
 import mysql.connector
 mydb = mysql.connector.connect(
@@ -30,47 +30,64 @@ def Aindex():
 
 @app.route('/Adoctor',methods = ['POST', 'GET'])
 def Adoctor():
-
-    myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr JOIN dep on dr.depno = dep.dep_no JOIN dr_patient on dr_patient.dr_id =dr.id JOIN patient ON patient.ssn =dr_patient.patient_ssn")
-    myResult = myCursor.fetchall()
-    return render_template('Adoctor.html' ,doctors_data = myResult)
+    if request.method == 'POST':
+        d_id = request.form['doc_id']
+        myCursor10 = mydb.cursor()
+        sql = "SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr JOIN dep on dr.depno = dep.dep_no JOIN dr_patient on dr_patient.dr_id =dr.id JOIN patient ON patient.ssn =dr_patient.patient_ssn WHERE id= %s"
+        val = (d_id, )
+        myCursor10.execute(sql,val)
+        myResult7 =myCursor10.fetchall()
+        return render_template('Adoctor.html' ,doctors_data = myResult7)
+    else:
+        myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr JOIN dep on dr.depno = dep.dep_no JOIN dr_patient on dr_patient.dr_id =dr.id JOIN patient ON patient.ssn =dr_patient.patient_ssn")
+        myResult = myCursor.fetchall()
+        return render_template('Adoctor.html' ,doctors_data = myResult)
 
 @app.route('/Dedit')
 def Dedit():
     return render_template('Dedit.html')
 
-@app.route('/Ddelete')
-def Ddelete():
-    doc_id = request.args.get("dr_id")
+@app.route('/Ddelete/<string:dr_id>', methods = ['GET'])
+def delete(dr_id):
+    # flash("Record Has Been Deleted Successfully")
+    myCursor15 = mydb.cursor()
+    sql = "DELETE FROM dr WHERE id = %s"
+    val = (dr_id, )
+    myCursor15.execute(sql,val)
 
-    # sql = "DELETE FROM dr WHERE id = %s"
-    # id = (doc_id, )
-
-    # mycursor.execute(sql, id)
-
-    # mydb.commit()
-
-    print(doc_id, "   record(s) deleted")
-    return render_template('Adoctor.html')
+    mydb.commit()
+    
+    return redirect(url_for('Adoctor'))
 
 
-@app.route('/Apatient') 
+@app.route('/Apatient',methods =['POST','GET']) 
 def Apatient():
-    myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient JOIN dr_patient on dr_patient.patient_ssn =patient.ssn JOIN dr ON dr.id =dr_patient.dr_id")
-    myResult2 = myCursor.fetchall()
-    return render_template('Apatient.html' , patients_data = myResult2)
+    if request.method == 'POST':
+        p_id = request.form['p_id']
+        myCursor10 = mydb.cursor()
+        sql = "SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient JOIN dr_patient on dr_patient.patient_ssn =patient.ssn JOIN dr ON dr.id =dr_patient.dr_id where ssn = %s"
+        val = (p_id, )
+        myCursor10.execute(sql,val)
+        myResult7 =myCursor10.fetchall()
+        return render_template('Apatient.html' ,patients_data = myResult7)
+    else:
+        myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient JOIN dr_patient on dr_patient.patient_ssn =patient.ssn JOIN dr ON dr.id =dr_patient.dr_id")
+        myResult2 = myCursor.fetchall()
+        return render_template('Apatient.html' , patients_data = myResult2)
 
 @app.route('/Pedtit')
 def Pedit():
     return render_template('Pedit.html')
 
-@app.route('/Pdelete')
-def Pdelete():
-    sql = "INSERT INTO doctors (name,departement,id) VALUES(%s,%s,%s)"
-    value = (name ,departement,id)
-    myCursor.execute(sql,value)
+@app.route('/Pdelete/<string:p_id>', methods = ['GET'])
+def Pdelete(p_id):
+    myCursor16 = mydb.cursor()
+    sql = "DELETE FROM patient WHERE ssn = %s"
+    val = (p_id, )
+    myCursor16.execute(sql,val)
     mydb.commit()
-    return render_template('patient.html')
+    
+    return redirect(url_for('Apatient'))
 
 
 @app.route('/Acomplains') 
@@ -78,19 +95,6 @@ def Acomplains():
     myCursor.execute("SELECT * FROM contact_us")
     myResult5 = myCursor.fetchall()
     return render_template('Acomplains.html' ,complains_data = myResult5)
-
-@app.route('/Cedtit')
-def Cedit():
-    return render_template('Cedit.html')
-
-@app.route('/Cdelete')
-def Cdelete():
-    sql = "INSERT INTO doctors (name,departement,id) VALUES(%s,%s,%s)"
-    value = (name ,departement,id)
-    myCursor.execute(sql,value)
-    mydb.commit()
-    return render_template('complains.html')
-
 
 
 if __name__ == '__main__':
