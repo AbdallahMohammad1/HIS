@@ -129,5 +129,5 @@ def Cdelete():
 
 
 if __name__ == '__main__':
-    app.run() # dh by run server 3la el local host bta3e
+    app.run(debug=True) # dh by run server 3la el local host bta3e
 
