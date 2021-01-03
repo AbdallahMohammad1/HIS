@@ -13,6 +13,37 @@ app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 @app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/signin')
+def signin():
+    return render_template('signin.html')
+
+@app.route('/contactus',methods = ['POST', 'GET'])
+def contact():
+    if request.method == 'POST': ##check if there is post data
+        name = request.form['name']
+        try:
+            #print(name)
+            mydb = mysql.connector.connect(
+            host = 'sql7.freemysqlhosting.net',
+            user = 'sql7384553',
+            passwd = 'EBclWXd7nQ',
+            database = 'sql7384553'
+            )
+            mc = mydb.cursor()
+            #sql = "INSERT INTO contact_us (complain_text) VALUES (name)"
+            mc.execute('INSERT INTO %s (complain_text) VALUES (\'%s\')' % ('contact_us', name))
+            mydb.commit()
+            print(name)
+            return render_template('contactus.html',message="Welcome Doctor "+name)
+        except:
+            return render_template('contactus.html',error="Something Went wrong ")
+    else:
+      return render_template('contactus.html')
+
+@app.route('/admin')
 def Aindex():
 
     myCursor.execute("SELECT id FROM dr")
