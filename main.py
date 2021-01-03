@@ -74,13 +74,13 @@ def Adoctor():
     if request.method == 'POST':
         d_id = request.form['doc_id']
         myCursor10 = mydb.cursor()
-        sql = "SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr JOIN dep on dr.depno = dep.dep_no JOIN dr_patient on dr_patient.dr_id =dr.id JOIN patient ON patient.ssn =dr_patient.patient_ssn WHERE id= %s"
+        sql = "SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr LEFT JOIN dep on dr.depno = dep.dep_no LEFT JOIN dr_patient on dr_patient.dr_id =dr.id LEFT JOIN patient ON patient.ssn =dr_patient.patient_ssn WHERE id= %s"
         val = (d_id, )
         myCursor10.execute(sql,val)
         myResult7 =myCursor10.fetchall()
         return render_template('Adoctor.html' ,doctors_data = myResult7)
     else:
-        myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr JOIN dep on dr.depno = dep.dep_no JOIN dr_patient on dr_patient.dr_id =dr.id JOIN patient ON patient.ssn =dr_patient.patient_ssn")
+        myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr LEFT JOIN dep on dr.depno = dep.dep_no LEFT JOIN dr_patient on dr_patient.dr_id =dr.id LEFT JOIN patient ON patient.ssn =dr_patient.patient_ssn")
         myResult = myCursor.fetchall()
         return render_template('Adoctor.html' ,doctors_data = myResult)
 
@@ -106,13 +106,13 @@ def Apatient():
     if request.method == 'POST':
         p_id = request.form['p_id']
         myCursor10 = mydb.cursor()
-        sql = "SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient JOIN dr_patient on dr_patient.patient_ssn =patient.ssn JOIN dr ON dr.id =dr_patient.dr_id where ssn = %s"
+        sql = "SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id where ssn = %s"
         val = (p_id, )
         myCursor10.execute(sql,val)
         myResult7 =myCursor10.fetchall()
         return render_template('Apatient.html' ,patients_data = myResult7)
     else:
-        myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient JOIN dr_patient on dr_patient.patient_ssn =patient.ssn JOIN dr ON dr.id =dr_patient.dr_id")
+        myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id")
         myResult2 = myCursor.fetchall()
         return render_template('Apatient.html' , patients_data = myResult2)
 

@@ -1,9 +1,16 @@
 body{
     box-sizing: content-box;
     background-color: #dbd6d62e;
+    font-family: 'Poppins', sans-serif;
 }
 .nav-item{
     margin:0 25px;
+}
+.navbar-brand{
+    text-shadow: 0 0 20px #00ffff;
+}
+.logo{
+    width:30px
 }
 h1{
     margin: 20px;

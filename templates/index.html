@@ -1,42 +1,46 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+   <link href="{{ url_for('static', filename='css/backend.css') }}" rel="stylesheet">
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <link rel="icon" type="image/png" href="https://i.ibb.co/7y12V0s/Logo.png"/>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-    <title>Clinic Application!</title>
-  </head>
-  <body>
-
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-   </button>
-
-   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-         <li class="nav-item active">
-         <a class="nav-link" href="http://127.0.0.1:5000/">Home <span class="sr-only">(current)</span></a>
-         </li>
-         <li class="nav-item">
-         <a class="nav-link" href="http://127.0.0.1:5000/signindr">sign in for dr</a>
-         </li>
-         <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:5000/signinpt">sign in for pt</a>
-            </li>
-         <li class="nav-item">
-         <a class="nav-link" href="http://127.0.0.1:5000/contactus">contact us</a>
-         </li>
-      </ul>
+   <title>Clinic Application!</title>
+</head>
+<body>
+   <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <a class="navbar-brand" href="{{ url_for('Aindex') }}">
+            <img class="logo" src="https://i.ibb.co/7y12V0s/Logo.png" alt="">
+            Dar Elfoad</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+      
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+               <li class="nav-item active">
+               <a class="nav-link" href="http://127.0.0.1:5000/">Home <span class="sr-only">(current)</span></a>
+               </li>
+               <li class="nav-item">
+               <a class="nav-link" href="http://127.0.0.1:5000/signindr">sign in for dr</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="http://127.0.0.1:5000/signinpt">sign in for pt</a>
+                  </li>
+               <li class="nav-item">
+               <a class="nav-link" href="http://127.0.0.1:5000/contactus">contact us</a>
+               </li>
+            </ul>
+         </div>
+         </nav>
    </div>
-   </nav>
+   
    <div class="container">
          {% block head %}
             <h1></h1>
