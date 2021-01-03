@@ -16,9 +16,13 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 def index():
     return render_template('index.html')
 
-@app.route('/signin')
-def signin():
-    return render_template('signin.html')
+@app.route('/signindr')
+def signindr():
+    return render_template('signindr.html')
+
+@app.route('/signinpt')
+def signinpt():
+    return render_template('signinpt.html')
 
 @app.route('/contactus',methods = ['POST', 'GET'])
 def contact():
@@ -29,7 +33,7 @@ def contact():
             mydb = mysql.connector.connect(
             host = 'sql7.freemysqlhosting.net',
             user = 'sql7384553',
-            passwd = 'EBclWXd7nQ',
+            passwd = 'EBclءWXd7nQ',
             database = 'sql7384553'
             )
             mc = mydb.cursor()
