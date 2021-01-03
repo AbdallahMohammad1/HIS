@@ -22,7 +22,7 @@ def signinpt():
         name = request.form['UName']
         pw = request.form['Password']
         print(name)
-        myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient JOIN dr_patient on dr_patient.patient_ssn =patient.ssn JOIN dr ON dr.id =dr_patient.dr_id WHERE patient.uname=(\'%s\') AND patient.pass=(\'%s\')"%(name,pw))
+        myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id WHERE patient.uname=(\'%s\') AND patient.pass=(\'%s\')"%(name,pw))
         myResult = myCursor.fetchall()
         return render_template('profilept.html' ,doctors_data = myResult)
     else:
@@ -33,7 +33,7 @@ def signindr():
     if request.method == 'POST': ##check if there is post data
         name = request.form['UName']
         pw = request.form['Password']
-        myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr JOIN dep on dr.depno = dep.dep_no JOIN dr_patient on dr_patient.dr_id =dr.id JOIN patient ON patient.ssn =dr_patient.patient_ssn WHERE dr.uname=(\'%s\') AND dr.pass=(\'%s\')"%(name,pw))
+        myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr LEFT JOIN dep on dr.depno = dep.dep_no LEFT JOIN dr_patient on dr_patient.dr_id =dr.id LEFT JOIN patient ON patient.ssn =dr_patient.patient_ssn WHERE dr.uname=(\'%s\') AND dr.pass=(\'%s\')"%(name,pw))
         myResult = myCursor.fetchall()
         return render_template('profiledr.html' ,doctors_data = myResult)
     else:
@@ -56,7 +56,7 @@ def contact():
             mc.execute('INSERT INTO %s (complain_text) VALUES (\'%s\')' % ('contact_us', name))
             mydb.commit()
             print(name)
-            return render_template('contactus.html',message="Welcome Doctor "+name)
+            return render_template('contactus.html',message="your complain has been recorded ")
         except:
             return render_template('contactus.html',error="Something Went wrong ")
     else:
