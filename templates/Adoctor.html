@@ -2,27 +2,15 @@
 {% block main %}
 <div class="container">
     <h1 class="text-center animate__animated animate__slideInDown">Doctors</h1>
-    <!-- <div class="row">
-        <div class="col-lg-5">
+    <div class="row br">
+        <div class="col-lg-4">
             <form class="d-flex" action="http://127.0.0.1:5000/Adoctor" method="POST">
-                <div class="mb-3">
-                    <label for="dr_id" class="form-label">Search By Id</label>
-                    <input class="form-control me-2" name="doc_id" id="dr_id" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" name="doc_id" id="dr_id" type="search" placeholder="Search by id" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                </div>
             </form>
         </div>
-        <div class="col-lg-2"></div>
-        <div class="col-lg-5">
-            <form class="d-flex" action="http://127.0.0.1:5000/Adoctor" method="POST">
-                <div class="mb-3">
-                    <label for="dr_name" class="form-label">Search By Uname</label>
-                    <input class="form-control me-2" name="doc_name" id="dr_name" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </div>
-            </form>
-        </div> -->
-    <table class="table table-dark table-stripped">
+    </div>
+    <table class="table table-dark table-hover">
         <thead>
         <tr>
             <th scope="col">id</th>
@@ -50,9 +38,12 @@
             <td>{{ data.7 }}</td>
             <td>{{ data.8 }}</td>
 
-            <td><button class="btn btn-success"><a href="http://127.0.0.1:5000/Dedit"><i class="fas fa-user-edit"></i>Edit</a></button>
-                <button class="btn btn-danger confirm"><a href="http://127.0.0.1:5000/Aindex/dr_id={{ data.0 }}"><i class="fas fa-user-minus"></i>Delete</a></button>
+            <td><button class="btn btn-primary"><a href="http://127.0.0.1:5000/Dedit"><i class="fas fa-user-edit"></i>Edit</a></button>
+                <button class="btn btn-danger" ><a href="/Ddelete/{{ data.0 }}" onclick="return confirm('Are YOU Sure You Want To Delete This Doctor?')"><i class="fas fa-user-minus"></i>Delete</a></button>
             </td>
+            <!-- <form action="http://127.0.0.1:5000/Ddelete" method="GET" >
+                <input type="text" hidden name="delete" value="{{ data.0 }}">
+            </form> -->
         </tr>
         {% endfor %}
     
