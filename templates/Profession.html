@@ -1,0 +1,207 @@
+{%extends 'base2.html'%}
+{%block head%}
+
+<style>
+
+        .main{
+color: #feffff;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E,#23A6D5,#23D5AB);
+           font-family:helvetica;
+           background-size:500% 500% ;
+           grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+           animation:change 5s ease-in-out infinite;
+
+
+
+   }
+
+*{
+    margin:0px;
+    padding:0px;
+        box-sizing:border-box;
+                   background-position: initial;
+
+
+}
+
+.img_Doc{
+
+
+        width:48%;
+        Height:30%;
+
+
+
+
+
+}
+.img_Doc:hover{
+         transform:scale(1.1);
+        transition: all 0.3s ease-in;
+
+
+
+
+}
+.img_Pachient{
+        width:48%;
+        Height:40%;
+        bottom:50%;
+        max-Height:99%;
+
+
+}
+.img_Pachient:hover{
+        transform:scale(1.1);
+        transition: all 0.3s ease-in;
+
+
+}
+.WelcomeDoc{
+        position:absolute;
+        top:48%;
+        float:left;
+        left:62%;
+        font-size:70px;
+        opacity:0;
+        padding:0 20px;
+        text-shadow:0 0 20px #00ffff;
+
+
+}
+.WelcomeDoc:after
+{
+        content: attr(data-text);
+        position:absolute;
+        top:0;
+        left:0;
+        padding:0 20px;
+        z-index:-1;
+        color:#00ffff;
+
+
+
+}
+.WelcomeDear{
+        position:absolute;
+        top:48%;
+        float:left;
+        left:59%;
+        font-size:70px;
+        opacity:0;
+        padding:0 20px;
+        text-shadow:0 0 20px #00ffff;
+
+
+}
+.WelcomeDear:after
+{
+        content: attr(data-text);
+        position:absolute;
+        top:0;
+        left:0;
+        padding:0 20px;
+        z-index:-1;
+        color:#00ffff;
+
+
+
+}
+
+
+
+
+
+
+
+
+@keyframes change{
+0%{
+        background-position:0 50%;
+}
+50%{
+        background-position:100% 50%;
+}
+100%{
+        background-position:0 50%;
+}
+
+
+}
+.Selectorr{
+         position:absolute;
+        top:4%;
+        float:left;
+        left:60.5%;
+        font-size:50px;
+        padding:0 20px;
+        text-shadow:0 0 20px #00ffff;
+
+}
+
+
+</style>
+
+<script>
+        function Appear(){
+
+
+                var text=document.getElementById('WelcomeDoctor').style.opacity=1;
+        }
+        function Disappear(){
+
+                var text=document.getElementById('WelcomeDoctor').style.opacity=0;
+
+        }
+        function Appear2(){
+
+
+                var text=document.getElementById('WelcomeDear').style.opacity=1;
+        }
+        function Disappear2(){
+
+                var text=document.getElementById('WelcomeDear').style.opacity=0;
+
+        }
+
+
+
+
+</script>
+
+
+
+
+
+
+
+<title>Professions</title>
+
+{%endblock%}
+
+{%block body%}
+
+<h2 class="Selectorr" >Please select Profession</h2>
+
+
+<form action="/SignUp" >
+        <input type="image"  src="{{url_for('static',filename='images/wp2968489-medical-doctor-wallpaper.jpg')}}"
+        alt="Doctor" id="Doctor" name="Doctor" class="img_Doc" onmouseover="Appear()" onmouseout="Disappear()"
+        >
+        <h1 class="WelcomeDoc" id="WelcomeDoctor"  data-text="You are a doctor" >You are a doctor</h1>
+
+</form>
+
+
+<form action="/SignUp2" >
+        <input type="image"  src="{{url_for('static',filename='images/wallpaperflare.com_wallpaper.jpg')}}"
+        alt="Doctor" id="Pachient" name="Pachient" class="img_Pachient" onmouseover="Appear2()" onmouseout="Disappear2()"
+        >
+         <h1 class="WelcomeDear" id="WelcomeDear"  data-text="You are our visitor" >You are our visitor</h1>
+</form>
+
+
+
+
+
+{%endblock%}

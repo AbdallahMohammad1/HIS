@@ -1,0 +1,841 @@
+{%extends 'base2.html'%}
+{%block head%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<title>SignUp</title>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+    color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background-image: url('https://wallpapercave.com/wp/wp2968502.jpg');
+    background-size:100% 100%;
+
+}
+::selection{
+  color: #fff;
+  background: #d43f8d;
+}
+.container{
+  width: 400px;
+  background:  #23A6D5;
+
+  text-align: center;
+  border-radius: 50px;
+  padding: 50px 35px 10px 35px;
+    background-size:500% 500% ;
+    animation:change 5s ease-in-out infinite;
+    opacity:0.9;
+}
+.container header{
+  font-size: 35px;
+  font-weight: 600;
+  margin: 0 0 30px 0;
+}
+.container .form-outer{
+  width: 100%;
+  overflow: hidden;
+}
+.container .form-outer form{
+  display: flex;
+  width: 400%;
+}
+.form-outer form .page{
+  width: 25%;
+  transition: margin-left 0.3s ease-in-out;
+}
+.form-outer form .page .title{
+  text-align: left;
+  font-size: 25px;
+  font-weight: 500;
+}
+.form-outer form .page .field{
+  width: 330px;
+  height: 45px;
+  margin: 45px 0;
+  display: flex;
+  position: relative;
+}
+form .page .field .label{
+  position: absolute;
+  top: -30px;
+  font-weight: 500;
+}
+form .page .field input{
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 100px;
+  padding-left: 15px;
+  font-size: 18px;
+}
+form .page .field select{
+  width: 100%;
+  padding-left: 10px;
+  font-size: 17px;
+  font-weight: 500;
+}
+form .page .field button{
+  width: 100%;
+  height: calc(100% + 5px);
+  border: none;
+  background: #d33f8d;
+  margin-top: -20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.5s ease;
+}
+form .page .field button:hover{
+  background: #000;
+}
+form .page .btns button{
+  margin-top: -20px!important;
+}
+form .page .btns button.prev{
+  margin-right: 3px;
+  font-size: 17px;
+}
+form .page .btns button.next{
+  margin-left: 3px;
+}
+.container .progress-bar{
+  display: flex;
+  margin: 100px ;
+  user-select: none;
+        flex-direction: row;
+    background:none;
+
+}
+.container .progress-bar .step{
+  text-align: center;
+  width: 100%;
+  position: relative;
+        flex-direction: row;
+    background:none;
+
+}
+.container .progress-bar .step p{
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 8px;
+        flex-direction: row;
+    background:none;
+
+}
+.progress-bar .step .bullet{
+  height: 29px;
+  width: 29px;
+  border: 2px solid #000;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  transition: 0.2s;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 25px;
+    flex-direction: row;
+    background:none;
+}
+.progress-bar .step .bullet.active{
+  border-color: #d43f8d;
+        flex-direction: row;
+
+}
+.progress-bar .step .bullet span{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+        flex-direction: row;
+
+}
+.progress-bar .step .bullet.active span{
+  display: none;
+}
+.progress-bar .step .bullet:before,
+.progress-bar .step .bullet:after{
+  position: absolute;
+  content: '';
+  bottom: 11px;
+  right: -35px;
+  height: 3px;
+  width: 39px;
+  background: #262626;
+    flex-direction: row;
+
+}
+.progress-bar .step .bullet.active:after{
+  background: #d43f8d;
+  transform: scaleX(0);
+    flex-direction: row;
+
+  transform-origin: left;
+  animation: animate 0.3s linear forwards;
+}
+@keyframes animate {
+  100%{
+    transform: scaleX(1);
+  }
+}
+.progress-bar .step:last-child .bullet:before,
+.progress-bar .step:last-child .bullet:after{
+  display: none;
+}
+.progress-bar .step p.active{
+  color: #d43f8d;
+  transition: 0.2s linear;
+    flex-direction: row;
+
+}
+.progress-bar .step .check{
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  font-size: 15px;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.progress-bar .step .check.active{
+  display: block;
+  color: #fff;
+}
+
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+
+
+.main-menu {
+  float: left;
+  position: absolute;
+  min-height: 100%;
+  width: 500px;
+  z-index: 1000;
+  -webkit-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  -moz-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+
+  -webkit-transform: translate(-336px, 0);
+  -moz-transform: translate(-336px, 0);
+  transform: translate(-336px, 0);
+}
+.main-menu.open {
+  -webkit-transform: translate(0, 0) skew(0);
+  -moz-transform: translate(0, 0) skew(0);
+  transform: translate(0, 0) skew(0);
+}
+.main-menu.open .main-menu-form {
+  -webkit-transform: skewX(-25deg);
+  -moz-transform: skewX(-25deg);
+  transform: skewX(-25deg);
+}
+.main-menu.open .main-menu-form:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: #2980B9;
+  box-shadow: 0px 0px 6px 1px rgba(93, 173, 226, 0.7);
+}
+.main-menu-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E,#23A6D5,#23D5AB);
+  background-size:500% 500% ;
+    animation:change 5s ease-in-out infinite;
+    opacity:0.9;
+  z-index: 1001;
+  -webkit-transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  -moz-transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+
+  -webkit-transform: skewX(-38deg);
+  -moz-transform: skewX(-38deg);
+  transform: skewX(-38deg);
+}
+
+.main-menu.open .main-menu-btn {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0s, visibility 0s;
+    -moz-transition: opacity 0s, visibility 0s;
+    transition: opacity 0s, visibility 0s;
+}
+
+.main-menu-content {
+  position: relative;
+  padding: 35px 55px 35px 25px;
+  font: normal 16px/1.25 'Open Sans';
+}
+.main-menu.open .main-menu-content {
+  z-index: 1002;
+}
+.main-menu-logo h2 {
+  font-size: 28px;
+  opacity: 0;
+}
+.main-menu.open .main-menu-logo h2 {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease-in .3s;
+  -moz-transition: opacity .5s ease-in .3s;
+  transition: opacity .5s ease-in .3s;
+}
+.main-menu-nav {
+  margin-top: 35px;
+}
+
+.main-menu.open .main-menu-nav a {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  transform: translate(0, 0);
+  -webkit-transition: color .2s ease-in-out 0s, opacity .3s ease, transform .3s ease;
+  -moz-transition: color .2s ease-in-out 0s, opacity .3s ease, transform .3s ease;
+  transition: color .2s ease-in-out 0s, opacity .3s ease, transform .3s ease;
+  opacity: 1;
+}
+.main-menu-nav a {
+  opacity: 0;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 20px;
+  color: #5DADE2;
+  -webkit-transform: translate(0, 100%);
+  -moz-transform: translate(0, 100%);
+  transform: translate(0, 100%);
+}
+.main-menu-nav i {
+  color: #fff;
+  -webkit-transition: color .2s ease-in-out;
+  -moz-transition: color .2s ease-in-out;
+  transition: color .2s ease-in-out;
+}
+.main-menu.open .main-menu-nav a:hover {
+  color: #3498DB;
+  -webkit-transition-delay: 0s !important;
+  -moz-transition-delay: 0s !important;
+  transition-delay: 0s !important;
+}
+
+.main-menu.open .main-menu-nav a.orange {
+  font-size:50px;
+    -webkit-transition-delay: .4s;
+  -moz-transition-delay: .4s;
+  transition-delay: .4s;
+    color: #ffffff;
+
+}
+.main-menu.open .main-menu-nav a.yellow {
+  -webkit-transition-delay: .5s;
+  -moz-transition-delay: .5s;
+  transition-delay: .5s;
+}
+.main-menu.open .main-menu-nav a.green {
+  -webkit-transition-delay: .6s;
+  -moz-transition-delay: .6s;
+  transition-delay: .6s;
+}
+.main-menu.open .main-menu-nav a.purple {
+  -webkit-transition-delay: .7s;
+  -moz-transition-delay: .7s;
+  transition-delay: .7s;
+}
+.main-menu.open .main-menu-nav a.red {
+  -webkit-transition-delay: .8s;
+  -moz-transition-delay: .8s;
+  transition-delay: .8s;
+}
+.main-menu-nav a.orange:hover i {
+  color: #D35400;
+}
+.main-menu-nav a.yellow:hover i {
+  color: #F5AB35;
+}
+.main-menu-nav a.green:hover i {
+  color: #00B16A;
+}
+.main-menu-nav a.purple:hover i {
+  color: #9A12B3;
+}
+.main-menu-nav a.red:hover i {
+  color: #F64747;
+}
+
+
+.main-menu-btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 38px;
+  right: 39px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #AEB6BF;
+  -webkit-transition: opacity .4s cubic-bezier(0.95, 0.05, 0.795, 0.035), visibility .4s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  -moz-transition: opacity .4s cubic-bezier(0.95, 0.05, 0.795, 0.035), visibility .4s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  transition: opacity .4s cubic-bezier(0.95, 0.05, 0.795, 0.035), visibility .4s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+
+  -webkit-transform: skew(38deg) rotate(38deg);
+  -moz-transform: skew(38deg) rotate(38deg);
+  transform: skew(38deg) rotate(38deg);
+
+}
+.main-menu-btn i {
+  -webkit-transform: rotate(-38deg);
+  -moz-transform: rotate(-38deg);
+  transform: rotate(-38deg);
+  color: #AEB6BF;
+}
+.main-menu-btn:hover i{
+  color: #3498DB;
+}
+
+
+.main-menu.open .main-menu-close {
+  opacity: 1;
+  -webkit-transition: color .2s ease, opacity 1s ease 1s, transform .3s ease 1s;
+  -moz-transition: color .2s ease, opacity 1s ease 1s, transform .3s ease 1s;
+  transition: color .2s ease, opacity 1s ease 1s, transform .3s ease 1s;
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.main-menu-close {
+  opacity: 0;
+  display: inline-block;
+  margin-top: 65px;
+  margin-left: 15px;
+  font-size: 18px;
+  color: #BDC3C7;
+  -webkit-transform: translate(0, 100%);
+  -moz-transform: translate(0, 100%);
+  transform: translate(0, 100%);
+}
+.main-menu-close:hover {
+  color: #A569BD;
+}
+
+
+.main-wrapper {
+  max-width: 1280px;
+  padding: 0 10px;
+  margin: 0 auto;
+  background: #212F3D;
+  font: normal 16px 'Open Sans';
+}
+
+.main-content {
+  padding: 45px 55px;
+}
+.main-content h4 {
+  font-size: 26px;
+  line-height: 1.25;
+  color: #3498DB;
+  text-align: center;
+}
+.main-content .posts li {
+  margin: 10px 0;
+}
+
+.Neos{
+
+        font-size:70px;
+        text-shadow:0 0 20px #00ffff;
+
+
+}
+.Neos:after
+{
+        content: attr(data-text);
+
+        z-index:-1;
+        color: #ffffff;
+
+
+
+}
+
+
+
+
+
+
+
+@keyframes change {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+
+</style>
+
+
+
+
+{%endblock%}
+
+{%block body%}
+
+
+
+
+
+
+
+
+<div class="main-menu">
+  <div class="main-menu-form">
+    <div class="main-menu-btn"><i class="fa fa-bars"></i></div>
+  </div>
+  <div class="main-menu-content">
+    <!-- main logo -->
+    <div class="main-menu-logo">
+      <h2 style="text-shadow:0 0 20px #00ffff;">This is the Sign Up Of Doctor</h2>
+    </div>
+    <!-- navigation -->
+    <ul class="main-menu-nav">
+     </ul>
+
+    <a href="#" style=" text-shadow:0 0 20px #fdffff; color:black;" class="main-menu-close"><i class="fa fa-close"></i>&nbsp; Close menu</a>
+  </div>
+</div>
+<div class="main-wrapper">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ <div class="container">
+         <header class="Neos">Signup Form</header>
+     <div class="progress-bar">
+          <div class="step">
+              <p>Name..</p>
+    <div class="bullet">
+            <span>1</span>
+    </div>
+<div    class="check fas fa-check"></div>
+        </div>
+<div    class="step">
+          <p>Pass..</p>
+    <div class="bullet">
+            <span>2</span>
+    </div>
+        <div class="check fas fa-check">
+
+        </div>
+</div>
+
+         <div class="step">
+         <p>  Info..</p>
+<div class="bullet">
+            <span>3</span>
+</div>
+             <div class="check fas fa-check"></div>
+        </div>
+
+
+         <div class="step">
+             <p>Submit..</p>
+<div class="bullet">
+            <span>4</span>
+</div>
+
+<div class="check fas fa-check"></div>
+        </div>
+</div>
+<div class="form-outer">
+    <form action="#" method="POST">
+          <div class="page slide-page" >
+            <div class="title" style="text-shadow:0 0 20px #00ffff;">Basic Info:</div>
+            <div class="field">
+              <div class="label" >User Name</div>
+                <span></span>
+<input  type="text" name="UName" id="UName" placeholder="example: Erik , Alex, Tom" required="" oninvalid="this.setCustomValidity('Please Enter User Name')"
+ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
+            </div>
+<div class="field">
+              <div class="label"   >Email</div>
+<input type="text" name="email" id="email" placeholder="example:Erik@gmail.com" required="" oninvalid="this.setCustomValidity('Please Enter User Email')"
+ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')" >
+</div>
+<div class="field">
+              <button class="firstNext next">Next</button>
+</div>
+</div>
+<div class="page">
+            <div class="title" style="text-shadow:0 0 20px #00ffff;" >Password Confirmation:</div>
+<div class="field">
+              <div class="label">Password</div>
+<input type="password" name="password1" id="password1" placeholder="Enter your password" required="" oninvalid="this.setCustomValidity('Please Enter User Password')"
+ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
+</div>
+<div class="field">
+              <div class="label">Confirm password</div>
+    <input type="password" name="password2" id="password2" placeholder="Repeat password">
+</div>
+<div class="field btns">
+              <button class="prev-1 prev">Previous</button>
+              <button class="next-1 next">Next</button>
+</div>
+</div>
+<div class="page">
+            <div class="title" style="text-shadow:0 0 20px #00ffff;">Info</div>
+<div class="field">
+              <div class="label">Phone</div>
+<input type="Number" name="phone" id="phone" placeholder="*********" required="" oninvalid="this.setCustomValidity('Please Enter User Phone')"
+ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
+</div>
+<div class="field">
+              <div class="label">adress</div>
+<input type="text" name="address" id="address" placeholder="Location" required="" oninvalid="this.setCustomValidity('Please Enter User Address')"
+ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
+
+</div>
+<div class="field btns">
+              <button class="prev-2 prev">Previous</button>
+              <button class="next-2 next">Next</button>
+</div>
+</div>
+<div class="page">
+            <div class="title" style="text-shadow:0 0 20px #00ffff;">Specifications</div>
+<div class="field">
+              <div class="label">Department</div>
+<select id="department" name="department">
+<option value="1">1-Ocular</option>
+    <option value="2">2-Radiology</option>
+        <option value="4">4-Emergency</option>
+            <option value="5">5-ICU</option>
+                <option value="6">6-Reception</option>
+</select>
+
+</div>
+<div class="field">
+              <div class="label">Experience of years</div>
+<input type="number" name="Experiance" id="Experiance" placeholder="1,2,3.....15" required="" oninvalid="this.setCustomValidity('Please Enter User Experiance')"
+ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
+</div>
+<div class="field btns">
+              <button class="prev-3 prev">Previous</button>
+              <button class="submit">Submit</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+<script>
+
+    <!-- Created By CodingNepal -->
+const slidePage = document.querySelector(".slide-page");
+const nextBtnFirst = document.querySelector(".firstNext");
+const prevBtnSec = document.querySelector(".prev-1");
+const nextBtnSec = document.querySelector(".next-1");
+const prevBtnThird = document.querySelector(".prev-2");
+const nextBtnThird = document.querySelector(".next-2");
+const prevBtnFourth = document.querySelector(".prev-3");
+const submitBtn = document.querySelector(".submit");
+const progressText = document.querySelectorAll(".step p");
+const progressCheck = document.querySelectorAll(".step .check");
+const bullet = document.querySelectorAll(".step .bullet");
+let current = 1;
+
+
+nextBtnFirst.addEventListener("click", function(event){
+    if(document. getElementById("UName"). value. length == 0)
+    {
+    alert("User Name or Email is Empty");
+    }
+    else {
+        event.preventDefault();
+        slidePage.style.marginLeft = "-25%";
+        slidePage.style.opacity = 1;
+
+        bullet[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        progressText[current - 1].classList.add("active");
+        current += 1;
+    }
+});
+nextBtnSec.addEventListener("click", function(event){
+    if(document. getElementById("password1"). value. length == 0)
+    {
+    alert("User Password is Empty");
+    }
+    else {
+        event.preventDefault();
+        slidePage.style.marginLeft = "-50%";
+        bullet[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        progressText[current - 1].classList.add("active");
+        current += 1;
+    }
+});
+nextBtnThird.addEventListener("click", function(event){
+    if(document. getElementById("phone"). value. length == 0&&document. getElementById("address"). value. length == 0)
+    {
+    alert("User Phone or Address is Empty");
+    }
+    else {
+  event.preventDefault();
+  slidePage.style.marginLeft = "-75%";
+  bullet[current - 1].classList.add("active");
+  progressCheck[current - 1].classList.add("active");
+  progressText[current - 1].classList.add("active");
+  current += 1;}
+});
+submitBtn.addEventListener("click", function(){
+  bullet[current - 1].classList.add("active");
+  progressCheck[current - 1].classList.add("active");
+  progressText[current - 1].classList.add("active");
+  current += 1;
+  /*setTimeout(function(){
+    alert("Your Form Successfully Signed up");
+    location.reload();
+  },800);*/
+});
+
+prevBtnSec.addEventListener("click", function(event){
+  event.preventDefault();
+  slidePage.style.marginLeft = "0%";
+  bullet[current - 2].classList.remove("active");
+  progressCheck[current - 2].classList.remove("active");
+  progressText[current - 2].classList.remove("active");
+  current -= 1;
+});
+prevBtnThird.addEventListener("click", function(event){
+  event.preventDefault();
+  slidePage.style.marginLeft = "-25%";
+  bullet[current - 2].classList.remove("active");
+  progressCheck[current - 2].classList.remove("active");
+  progressText[current - 2].classList.remove("active");
+  current -= 1;
+});
+prevBtnFourth.addEventListener("click", function(event){
+  event.preventDefault();
+  slidePage.style.marginLeft = "-50%";
+  bullet[current - 2].classList.remove("active");
+  progressCheck[current - 2].classList.remove("active");
+  progressText[current - 2].classList.remove("active");
+  current -= 1;
+});
+var password = document.getElementById("password1")
+  , confirm_password = document.getElementById("password2");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+
+var MainMenu = (function() {
+    var MainMenu = function(config) {
+        config = config || {};
+        this.toggleBtn = $(config.toggleBtn);
+        this.menu = $(config.menu);
+        this.close = $(config.close);
+
+        this.init();
+        config = null;
+    };
+    // public interface
+    MainMenu.prototype = {
+        constructor: MainMenu,
+        init: function() {
+            this.eventManager();
+        },
+        eventManager: function() {
+            this.toggleBtn.on('click.openMenu', onButtonClickHandler.bind(this));
+            this.close.on('click.closeMenu', onCloseClickHandler.bind(this));
+        }
+    };
+    // private interface
+    function onButtonClickHandler(menu, evt) {
+        if (!this.menu.hasClass('open')) {
+            this.menu.addClass('open');
+        };
+
+    }
+
+    function onCloseClickHandler(evt) {
+        this.menu.removeClass('open')
+    }
+
+    function onDocumentClickHandler(evt) {
+        var $target = $(evt.target);
+
+        if (!$target.closest(this.menuForm).length && !$target.closest(this.menuContent).length && this.menu.hasClass('open')) {
+            this.menu.removeClass('open')
+        }
+    }
+
+    return MainMenu;
+})();
+
+
+$(document).ready(function() {
+    var mainMenu = new MainMenu({
+        menu: '.main-menu',
+        toggleBtn: '.main-menu-btn',
+        close: '.main-menu-close'
+    });
+});
+
+
+
+</script>
+
+{%endblock%}
