@@ -50,3 +50,13 @@ a{
 #box2 ,#box3{
     visibility: hidden;
 }
+.br{
+    margin-bottom: 25px;
+}
+.btn {
+    transition: all ease-in-out 0.5s;
+}
+.btn:hover{
+    color:black;
+    background-color: white;
+}
