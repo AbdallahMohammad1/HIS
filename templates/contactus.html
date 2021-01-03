@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+{% block head %}
+    <h3>phone number:01099889151</h3>
+    <h3>email:abdozza.206@gmail.com</h3>
+    <form action="http://localhost:5000/contactus" method="POST">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your name">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your data with anyone else.</small>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% if message%}
+      <div class="alert alert-success" role="alert">
+        {{ message }}
+      </div>
+    {% endif %}
+
+    {% if error%}
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
+        </div>
+    {% endif %}
+{% endblock %}
