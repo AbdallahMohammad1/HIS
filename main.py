@@ -47,6 +47,12 @@ def contact():
     else:
       return render_template('contactus.html')
 
+@app.route('/profiledr')
+def profiledr():
+    myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr JOIN dep on dr.depno = dep.dep_no JOIN dr_patient on dr_patient.dr_id =dr.id JOIN patient ON patient.ssn =dr_patient.patient_ssn WHERE dr.uname='abdallah'")
+    myResult = myCursor.fetchall()
+    return render_template('profiledr.html' ,doctors_data = myResult)
+
 @app.route('/admin')
 def Aindex():
 
