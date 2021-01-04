@@ -10,6 +10,10 @@
 
   <title>Clinic Application!</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
 
 <title>SignIn</title>
 
@@ -41,7 +45,7 @@ body{
 .container{
   width: 400px;
   background:  #22326c;
-
+  overflow: hidden;
   text-align: center;
   border-radius: 50px;
   padding: 50px 35px 10px 35px;
@@ -306,7 +310,7 @@ a {
 
   <body>
 
-   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="align-self: baseline;">
+   <nav class="navbar navbar-expand-lg navbar-dark "  style="align-self: baseline;background-color: #36457A">
     <a class="navbar-brand" href="{{ url_for('Aindex') }}">
       <img class="logo" src="https://i.ibb.co/7y12V0s/Logo.png" alt="">
       Dar Elfoad</a>
@@ -336,7 +340,7 @@ a {
 
 
 
- <div class="container">
+ <div class="container animate__animated  animate__fadeInRight">
          <header class="Neos">Sign In Form</header>
 <img src="https://i.ibb.co/7y12V0s/Logo.png" style="width: 70%;">
      <div class="progress-bar" style="display: none" >
@@ -375,7 +379,7 @@ a {
 <div class="check fas fa-check"></div>
         </div>
 </div>
-<div class="form-outer">
+<div class="form-outer animate__animated animate__fadeInRight">
     <form action="http://localhost:5000/signindr" method="POST">
           <div class="page slide-page" >
             <div class="title" style="text-shadow:0 0 20px #00ffff;">Basic Info:</div>
