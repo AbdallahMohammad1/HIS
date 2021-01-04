@@ -4,17 +4,23 @@
 
 {% block head %}
 <div class="container">
-  <h3>phone number:01099889151</h3>
-    <h3>email:abdozza.206@gmail.com</h3>
+    <div class="box box2">
+      <h5><i class="fas fa-phone-alt"></i> phone number: 01099889151</h3>
+      <h5> <i class="fas fa-at"></i>email: abdozza.206@gmail.com</h3>
+      <h5> <i class="fab fa-facebook-square"></i><a href="https://www.facebook.com/hos.ahlawy.1/" id="facebook">FaceBook</a></h3>
+    </div>
     <form action="http://localhost:5000/contactus" method="POST">
-      <div class="form-group">
+      <div class="form-group group ">
         <label for="exampleInputEmail1">you can also write your message here </label>
-        <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="please Enter your complain">
+        <input name="name" type="text" class="form-control col-lg-6" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="please Enter your complain">
         <small id="emailHelp" class="form-text text-muted">We'll try to solve your problem as fast as we can.</small>
       </div>
       
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <img src="{{url_for('static', filename='images/big-eclipse.svg')}}" class="big-circle" /> 
+    <img src="{{url_for('static', filename='images/mid-eclipse.svg')}}" class="mid-circle" /> 
+    <img src="{{url_for('static', filename='images/small-eclipse.svg')}}" class="small-circle" /> 
     {% if message%}
       <div class="alert alert-success" role="alert">
         {{ message }}

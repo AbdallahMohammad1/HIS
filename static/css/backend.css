@@ -117,6 +117,18 @@ a{
     color:black;
     background-color: white;
 }
+h5{
+    margin:50px
+}
+#facebook{
+    font-size: 19px;
+}
+.group,.box2{
+    margin-top:50px
+}
+.box2{
+    box-shadow: 0 0 20px #00ffff;
+}
 @media (max-width: 767.98px) { 
     .slogan{
         font-size: 17px;
