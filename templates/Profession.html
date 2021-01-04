@@ -1,90 +1,64 @@
 <!doctype html>
 <html lang="en">
 <head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-   <link href="{{ url_for('static', filename='css/backend.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/backend.css') }}" rel="stylesheet">
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
 
-   <link rel="icon" type="image/png" href="https://i.ibb.co/7y12V0s/Logo.png"/>
+        <link rel="icon" type="image/png" href="https://i.ibb.co/7y12V0s/Logo.png"/>
 
-   <title>Clinic Application!</title>
+        <title>Enter User</title>
 
 
 
 
 <style>
 
-        .main{
-color: #feffff;
-    background: linear-gradient(-45deg, #EE7752, #E73C7E,#23A6D5,#23D5AB);
-           font-family:helvetica;
-           background-size:500% 500% ;
-           grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
-           animation:change 5s ease-in-out infinite;
-
-
-
-   }
+.main{
+        color: #feffff;
+        background: linear-gradient(-45deg, #EE7752, #E73C7E,#23A6D5,#23D5AB);
+        font-family:helvetica;
+        background-size:500% 500% ;
+        grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+        animation:change 5s ease-in-out infinite;
+}
 
 *{
-    margin:0px;
-    padding:0px;
+        margin:0px;
+        padding:0px;
         box-sizing:border-box;
-                   background-position: initial;
-
-
+        background-position: initial;
 }
 
-.img_Doc{
-
-
-        width:48%;
-        Height:30%;
-
-
-
-
-
+.img_Doc, .img_Pachient{
+        margin:25px 0;
+        border-radius: 15px;
+        width:36%;
+        Height:32%;
 }
-.img_Doc:hover{
-         transform:scale(1.1);
-        transition: all 0.3s ease-in;
-
-
-
-
-}
-.img_Pachient{
-        width:48%;
-        Height:40%;
-        bottom:50%;
-        max-Height:99%;
-
-
-}
-.img_Pachient:hover{
+.img_Doc:hover, .img_Pachient:hover{
         transform:scale(1.1);
         transition: all 0.3s ease-in;
-
-
 }
-.WelcomeDoc{
+
+.WelcomeDoc,.WelcomeDear{
         position:absolute;
         top:48%;
         float:left;
-        left:62%;
-        font-size:70px;
+        left:50%;
+        font-size:50px;
         opacity:0;
         padding:0 20px;
-        text-shadow:0 0 20px #00ffff;
-
-
+        box-shadow:0 0 10px #00ffff;
 }
-.WelcomeDoc:after
-{
+.WelcomeDoc:after,.WelcomeDear:after{
         content: attr(data-text);
         position:absolute;
         top:0;
@@ -92,42 +66,7 @@ color: #feffff;
         padding:0 20px;
         z-index:-1;
         color:#00ffff;
-
-
-
 }
-.WelcomeDear{
-        position:absolute;
-        top:48%;
-        float:left;
-        left:59%;
-        font-size:70px;
-        opacity:0;
-        padding:0 20px;
-        text-shadow:0 0 20px #00ffff;
-
-
-}
-.WelcomeDear:after
-{
-        content: attr(data-text);
-        position:absolute;
-        top:0;
-        left:0;
-        padding:0 20px;
-        z-index:-1;
-        color:#00ffff;
-
-
-
-}
-
-
-
-
-
-
-
 
 @keyframes change{
 0%{
@@ -140,16 +79,6 @@ color: #feffff;
         background-position:0 50%;
 }
 
-
-}
-.Selectorr{
-         position:absolute;
-        top:4%;
-        float:left;
-        left:60.5%;
-        font-size:50px;
-        padding:0 20px;
-        text-shadow:0 0 20px #00ffff;
 
 }
 
@@ -181,67 +110,62 @@ color: #feffff;
 </script>
 
 
-<title>Professions</title>
+<title>Enter User</title>
 </head>
 <body>
+        <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="{{ url_for('Aindex') }}">
+                            <img class="logo" src="https://i.ibb.co/7y12V0s/Logo.png" alt="">
+                            Dar Elfoad</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto  mx-auto">
+                                <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ url_for('Aindex') }}">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('Adoctor') }}">Doctors</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('Apatient') }}">Patients</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('Acomplains') }}">Complains</a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav me-auto  mx-auto">
+                                <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ url_for('Hello225') }}">SignUp</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-         <a class="navbar-brand" href="{{ url_for('Aindex') }}">
-            <img class="logo" src="https://i.ibb.co/7y12V0s/Logo.png" alt="">
-            Dar Elfoad</a>
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
+        <h1 class="text-center animate__animated animate__slideInDown"> Enter User</h2>
 
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto">
-               <li class="nav-item active">
-               <a class="nav-link" href="http://127.0.0.1:5000/">Home <span class="sr-only">(current)</span></a>
-               </li>
-               <li class="nav-item">
-               <a class="nav-link" href="http://127.0.0.1:5000/signindr">sign in for dr</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="http://127.0.0.1:5000/signinpt">sign in for pt</a>
-                  </li>
-               <li class="nav-item">
-               <a class="nav-link" href="http://127.0.0.1:5000/SignUP">Sign Up</a>
-               </li>
 
-               <li class="nav-item">
-               <a class="nav-link" href="http://127.0.0.1:5000/contactus">contact us</a>
-               </li>
-            </ul>
-         </div>
-         </nav>
+        <form action="/SignUpDoc" >
+                <input type="image"  src="{{url_for('static',filename='images/wp2968489-medical-doctor-wallpaper.jpg')}}"
+                alt="Doctor" id="Doctor" name="Doctor" class="img_Doc" onmouseover="Appear()" onmouseout="Disappear()"
+                >
+                <h1 class="WelcomeDoc" id="WelcomeDoctor"  data-text="You are a doctor" >You are a doctor</h1>
+
+        </form>
+
+
+        <form action="/SignUpPatient" >
+                <input type="image"  src="{{url_for('static',filename='images/wallpaperflare.com_wallpaper.jpg')}}"
+                alt="Doctor" id="Pachient" name="Pachient" class="img_Pachient" onmouseover="Appear2()" onmouseout="Disappear2()"
+                >
+                <h1 class="WelcomeDear" id="WelcomeDear"  data-text="You are our visitor" >You are our visitor</h1>
+        </form>
    </div>
-
-
-   <h2 class="Selectorr" ></h2>
-
-
-<form action="/SignUpDoc" >
-        <input type="image"  src="{{url_for('static',filename='images/wp2968489-medical-doctor-wallpaper.jpg')}}"
-        alt="Doctor" id="Doctor" name="Doctor" class="img_Doc" onmouseover="Appear()" onmouseout="Disappear()"
-        >
-        <h1 class="WelcomeDoc" id="WelcomeDoctor"  data-text="You are a doctor" >You are a doctor</h1>
-
-</form>
-
-
-<form action="/SignUpPachient" >
-        <input type="image"  src="{{url_for('static',filename='images/wallpaperflare.com_wallpaper.jpg')}}"
-        alt="Doctor" id="Pachient" name="Pachient" class="img_Pachient" onmouseover="Appear2()" onmouseout="Disappear2()"
-        >
-         <h1 class="WelcomeDear" id="WelcomeDear"  data-text="You are our visitor" >You are our visitor</h1>
-</form>
-
-
-
-
-
-
-
 
 
 

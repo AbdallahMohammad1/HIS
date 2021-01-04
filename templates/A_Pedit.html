@@ -600,19 +600,20 @@ a {
 <div class="check fas fa-check"></div>
         </div>
 </div>
+{% for pdata in patient_data: %}
 <div class="form-outer">
-    <form action="http://127.0.0.1:5000/SignUpPatient" method="POST">
+    <form action="/Pedit/{{ pdata.0 }}" method="POST">
           <div class="page slide-page" >
             <div class="title" style="text-shadow:0 0 20px #00ffff;">Basic Info:</div>
             <div class="field">
               <div class="label" >User Name</div>
                 <span></span>
-<input  type="text" name="UName" id="UName" placeholder="example: Erik , Alex, Tom" required="" oninvalid="this.setCustomValidity('Please Enter User Name')"
+<input  type="text" name="UName" id="UName" value="{{pdata.1}}" placeholder="example: Erik , Alex, Tom" required="" oninvalid="this.setCustomValidity('Please Enter User Name')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
             </div>
 <div class="field">
               <div class="label"   >Email</div>
-<input type="text" name="email" id="email" placeholder="example:Erik@gmail.com" required="" oninvalid="this.setCustomValidity('Please Enter User Email')"
+<input type="email" name="email" value="{{pdata.3}}" id="email" placeholder="example:Erik@gmail.com" required="" oninvalid="this.setCustomValidity('Please Enter User Email')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')" >
 </div>
 <div class="field">
@@ -623,12 +624,12 @@ a {
             <div class="title" style="text-shadow:0 0 20px #00ffff;" >Password Confirmation:</div>
 <div class="field">
               <div class="label">Password</div>
-<input type="password" name="password1" id="password1" placeholder="Enter your password" required="" oninvalid="this.setCustomValidity('Please Enter User Password')"
+<input type="password" name="password1" value="{{pdata.2}}" id="password1" placeholder="Enter your password" required="" oninvalid="this.setCustomValidity('Please Enter User Password')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field">
               <div class="label">Confirm password</div>
-    <input type="password" name="password2" id="password2" placeholder="Repeat password">
+    <input type="password" name="password2" value="{{pdata.2}}" id="password2" placeholder="Repeat password">
 </div>
 <div class="field btns" style="margin-top:+95px">
               <button class="prev-1 prev" >Previous</button>
@@ -639,17 +640,17 @@ a {
             <div class="title" style="text-shadow:0 0 20px #00ffff;">Info</div>
 <div class="field">
               <div class="label">Phone</div>
-<input type="Number" name="phone" id="phone" placeholder="*********" required="" oninvalid="this.setCustomValidity('Please Enter User Phone')"
+<input type="Number" name="phone" id="phone" value="{{pdata.4}}" placeholder="*********" required="" oninvalid="this.setCustomValidity('Please Enter User Phone')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field">
               <div class="label">address</div>
-<input type="text" name="address" id="address" placeholder="Location" required="" oninvalid="this.setCustomValidity('Please Enter User Address')"
+<input type="text" name="address" id="address" value="{{pdata.5}}" placeholder="Location" required="" oninvalid="this.setCustomValidity('Please Enter User Address')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field">
   <div class="label">SSN</div>
-<input type="text" name="ssn" id="ssn" placeholder="i.e: 276543321586" required="" oninvalid="this.setCustomValidity('Please Enter Your ssn')"
+<input type="text" name="ssn" id="ssn" value="{{pdata.0}}" placeholder="i.e: 276543321586" required="" oninvalid="this.setCustomValidity('Please Enter Your ssn')"
 oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field btns" style="margin-top:+95px">
@@ -661,17 +662,17 @@ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
             <div class="title" style="text-shadow:0 0 20px #00ffff;">Specifications</div>
 <div class="field">
               <div class="label">Weight</div>
-<input type="Number" name="Weight" id="Weight" placeholder="80,120...Pounds" required="" oninvalid="this.setCustomValidity('Please Enter The Weight')"
+<input type="Number" name="Weight" id="Weight" value="{{pdata.6}}" placeholder="80,120...Pounds" required="" oninvalid="this.setCustomValidity('Please Enter The Weight')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field">
               <div class="label">Entry-Date</div>
-<input type="date" name="Entry-Date" id="Entry-Date" placeholder="**/**/****" required="" oninvalid="this.setCustomValidity('Please Enter Date of visit')"
+<input type="date" name="Entry-Date" id="Entry-Date" value="{{pdata.7}}" placeholder="**/**/****" required="" oninvalid="this.setCustomValidity('Please Enter Date of visit')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field"  id="Cheaker">
               <div class="label">Disease</div>
-<input type="text" name="Disease" id="Disease"  placeholder="Bacterial infection,virus,..." required="" oninvalid="this.setCustomValidity('Please Enter The disease')"
+<input type="text" name="Disease" id="Disease" value="{{pdata.8}}"  placeholder="Bacterial infection,virus,..." required="" oninvalid="this.setCustomValidity('Please Enter The disease')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field btns">
@@ -682,6 +683,7 @@ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </form>
 </div>
 </div>
+{%endfor%}
 <script>
 
     <!-- Created By CodingNepal -->

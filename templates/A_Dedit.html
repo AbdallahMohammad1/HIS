@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,6 +10,7 @@
 
    <link rel="icon" type="image/png" href="https://i.ibb.co/7y12V0s/Logo.png"/>
 
+   <title>Clinic Application!</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
@@ -130,7 +130,7 @@ form .page .btns button.next{
 }
 .container .progress-bar{
   display: flex;
-  margin: 50px ;
+  margin: 100px ;
   user-select: none;
         flex-direction: row;
     background:none;
@@ -507,7 +507,6 @@ a {
 
 
 
-
 @keyframes change {
     0% {
         background-position: 0 50%;
@@ -525,11 +524,19 @@ a {
 
 
 
-   <title>Clinic Application!</title>
+
+
+
+
+
+
+
 </head>
 
 
 <body>
+
+
 
 
 
@@ -540,7 +547,7 @@ a {
   <div class="main-menu-content">
     <!-- main logo -->
     <div class="main-menu-logo">
-      <h2 style="text-shadow:0 0 20px #00ffff;">This is the Sign Up Of Pachient</h2>
+      <h2 style="text-shadow:0 0 20px #00ffff;">This is the Sign Up Of Doctor</h2>
     </div>
     <!-- navigation -->
     <ul class="main-menu-nav">
@@ -552,6 +559,8 @@ a {
 <div class="main-wrapper">
 
 </div>
+
+
 
 
 
@@ -600,78 +609,76 @@ a {
 <div class="check fas fa-check"></div>
         </div>
 </div>
+{% for data in doctors_data: %}
 <div class="form-outer">
-    <form action="http://127.0.0.1:5000/SignUpPatient" method="POST">
+    <form action="/Dedit/{{ data.0 }}" method="POST">
           <div class="page slide-page" >
             <div class="title" style="text-shadow:0 0 20px #00ffff;">Basic Info:</div>
             <div class="field">
               <div class="label" >User Name</div>
                 <span></span>
-<input  type="text" name="UName" id="UName" placeholder="example: Erik , Alex, Tom" required="" oninvalid="this.setCustomValidity('Please Enter User Name')"
+<input  type="text" name="UName" id="UName" placeholder="example: Erik , Alex, Tom" value="{{data.1}}" required="" oninvalid="this.setCustomValidity('Please Enter User Name')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
             </div>
 <div class="field">
               <div class="label"   >Email</div>
-<input type="text" name="email" id="email" placeholder="example:Erik@gmail.com" required="" oninvalid="this.setCustomValidity('Please Enter User Email')"
+<input type="email" name="email" id="email" placeholder="example:Erik@gmail.com" required="" value="{{data.3}}" oninvalid="this.setCustomValidity('Please Enter User Email')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')" >
 </div>
 <div class="field">
-              <button class="firstNext next" style="margin-top:+30px">Next</button>
+              <button class="firstNext next">Next</button>
 </div>
 </div>
 <div class="page">
             <div class="title" style="text-shadow:0 0 20px #00ffff;" >Password Confirmation:</div>
 <div class="field">
               <div class="label">Password</div>
-<input type="password" name="password1" id="password1" placeholder="Enter your password" required="" oninvalid="this.setCustomValidity('Please Enter User Password')"
+<input type="password" name="password1" id="password1" value="{{data.2}}" placeholder="Enter your password" required="" oninvalid="this.setCustomValidity('Please Enter User Password')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field">
               <div class="label">Confirm password</div>
-    <input type="password" name="password2" id="password2" placeholder="Repeat password">
+    <input type="password" name="password2" value="{{data.2}}" id="password2" placeholder="Repeat password">
 </div>
-<div class="field btns" style="margin-top:+95px">
-              <button class="prev-1 prev" >Previous</button>
-              <button class="next-1 next" >Next</button>
+<div class="field btns">
+              <button class="prev-1 prev">Previous</button>
+              <button class="next-1 next">Next</button>
 </div>
 </div>
 <div class="page">
             <div class="title" style="text-shadow:0 0 20px #00ffff;">Info</div>
 <div class="field">
               <div class="label">Phone</div>
-<input type="Number" name="phone" id="phone" placeholder="*********" required="" oninvalid="this.setCustomValidity('Please Enter User Phone')"
+<input type="Number" name="phone" id="phone" value="{{data.4}}" placeholder="*********" required="" oninvalid="this.setCustomValidity('Please Enter User Phone')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field">
-              <div class="label">address</div>
-<input type="text" name="address" id="address" placeholder="Location" required="" oninvalid="this.setCustomValidity('Please Enter User Address')"
+              <div class="label">adress</div>
+<input type="text" name="address" id="address" value="{{data.5}}" placeholder="Location" required="" oninvalid="this.setCustomValidity('Please Enter User Address')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
+
 </div>
-<div class="field">
-  <div class="label">SSN</div>
-<input type="text" name="ssn" id="ssn" placeholder="i.e: 276543321586" required="" oninvalid="this.setCustomValidity('Please Enter Your ssn')"
-oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
-</div>
-<div class="field btns" style="margin-top:+95px">
-              <button class="prev-2 prev" style="margin-top:+30px">Previous</button>
-              <button class="next-2 next" style="margin-top:+30px">Next</button>
+<div class="field btns">
+              <button class="prev-2 prev">Previous</button>
+              <button class="next-2 next">Next</button>
 </div>
 </div>
 <div class="page">
             <div class="title" style="text-shadow:0 0 20px #00ffff;">Specifications</div>
 <div class="field">
-              <div class="label">Weight</div>
-<input type="Number" name="Weight" id="Weight" placeholder="80,120...Pounds" required="" oninvalid="this.setCustomValidity('Please Enter The Weight')"
- oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
+              <div class="label">Department</div>
+<select id="department" name="department">
+<option value="1">1-Ocular</option>
+    <option value="2">2-Radiology</option>
+        <option value="4">4-Emergency</option>
+            <option value="5">5-ICU</option>
+                <option value="6">6-Reception</option>
+</select>
+
 </div>
 <div class="field">
-              <div class="label">Entry-Date</div>
-<input type="date" name="Entry-Date" id="Entry-Date" placeholder="**/**/****" required="" oninvalid="this.setCustomValidity('Please Enter Date of visit')"
- oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
-</div>
-<div class="field"  id="Cheaker">
-              <div class="label">Disease</div>
-<input type="text" name="Disease" id="Disease"  placeholder="Bacterial infection,virus,..." required="" oninvalid="this.setCustomValidity('Please Enter The disease')"
+              <div class="label">Experience of years</div>
+<input type="number" name="Experiance" id="Experiance" value="{{data.7}}" placeholder="1,2,3.....15" required="" oninvalid="this.setCustomValidity('Please Enter User Experiance')"
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field btns">
@@ -682,6 +689,7 @@ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </form>
 </div>
 </div>
+{% endfor %}
 <script>
 
     <!-- Created By CodingNepal -->
@@ -697,6 +705,7 @@ const progressText = document.querySelectorAll(".step p");
 const progressCheck = document.querySelectorAll(".step .check");
 const bullet = document.querySelectorAll(".step .bullet");
 let current = 1;
+
 
 nextBtnFirst.addEventListener("click", function(event){
     if(document. getElementById("UName"). value. length == 0)
@@ -742,12 +751,14 @@ nextBtnThird.addEventListener("click", function(event){
   current += 1;}
 });
 submitBtn.addEventListener("click", function(){
-
   bullet[current - 1].classList.add("active");
   progressCheck[current - 1].classList.add("active");
   progressText[current - 1].classList.add("active");
   current += 1;
-
+  /*setTimeout(function(){
+    alert("Your Form Successfully Signed up");
+    location.reload();
+  },800);*/
 });
 
 prevBtnSec.addEventListener("click", function(event){
@@ -847,6 +858,7 @@ $(document).ready(function() {
 
 
 
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -854,6 +866,16 @@ $(document).ready(function() {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 

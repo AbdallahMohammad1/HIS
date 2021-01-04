@@ -100,9 +100,30 @@ def Adoctor():
         myResult = myCursor.fetchall()
         return render_template('Adoctor.html' ,doctors_data = myResult)
 
-@app.route('/Dedit')
-def Dedit():
-    return render_template('Dedit.html')
+@app.route('/Dedit/<string:d_id>', methods = ['POST','GET'])
+def Dedit(d_id):
+    if request.method == 'POST':
+        d_name2 = request.form['UName']
+        d_mail2 = request.form['email']
+        d_pass1_2 = request.form['password1']
+        d_phone2 = request.form['phone']
+        d_address2 = request.form['address']
+        d_dep2 = request.form['department']
+        d_exp2 = request.form['Experiance']
+        print(d_id,d_mail2)
+        myCursor21 = mydb.cursor()
+        sql = "UPDATE dr SET uname = %s , pass = %s , email = %s , phone =%s , address =%s , depno =%s ,exp_years =%s  WHERE id = %s"
+        val = (d_name2,d_pass1_2,d_mail2,d_phone2,d_address2,d_dep2,d_exp2 ,d_id)
+        myCursor21.execute(sql,val)
+        mydb.commit()  
+        return redirect(url_for('Adoctor'))
+    else:
+        sql = 'SELECt * FROM dr WHERE id = %s'
+        val = (d_id, )
+        myCursor.execute(sql,val)
+        myResult = myCursor.fetchall()
+        return render_template('A_Dedit.html',doctors_data = myResult)
+    
 
 @app.route('/Ddelete/<string:dr_id>', methods = ['GET'])
 def delete(dr_id):
@@ -132,9 +153,33 @@ def Apatient():
         myResult2 = myCursor.fetchall()
         return render_template('Apatient.html' , patients_data = myResult2)
 
-@app.route('/Pedtit')
-def Pedit():
-    return render_template('Pedit.html')
+@app.route('/Pedit/<string:p_ssn>', methods = ['POST','GET'])
+def Pedit(p_ssn):
+    if request.method == 'POST':
+        p_name = request.form['UName']
+        p_mail = request.form['email']
+        p_pass1 = request.form['password1']
+        p_phone = request.form['phone']
+        p_address = request.form['address']
+        p_ssn2 = request.form['ssn']
+        p_weight = request.form['Weight']
+        p_date = request.form['Entry-Date']
+        p_disease = request.form['Disease']
+        print(p_ssn2,p_mail)
+        myCursor20 = mydb.cursor()
+        sql = "UPDATE patient SET ssn=%s, uname = %s , pass = %s , email = %s , phone =%s , address =%s , weight =%s ,entry_day =%s ,disease = %s WHERE ssn = %s"
+        val = (p_ssn2,p_name,p_pass1,p_mail,p_phone,p_address,p_weight,p_date ,p_disease ,p_ssn)
+        myCursor20.execute(sql,val)
+        mydb.commit()  
+        return redirect(url_for('Apatient'))
+    else:
+        sql = 'SELECt * FROM patient WHERE ssn = %s'
+        val = (p_ssn, )
+        myCursor.execute(sql,val)
+        myResult = myCursor.fetchall()
+        return render_template('A_Pedit.html',patient_data = myResult)
+    
+
 
 @app.route('/Pdelete/<string:p_id>', methods = ['GET'])
 def Pdelete(p_id):
@@ -159,12 +204,46 @@ def Acomplains():
 def Hello225():
     return render_template('Profession.html')
 
-@app.route('/SignUpDoc')
-def Doctor():
-    return render_template('Sign_Up.html')
-@app.route('/SignUpPachient')
-def Pachient():
-    return render_template('SignUp2.html')
+@app.route('/SignUpDoc',methods= ['POST','GET'])
+def SignUpDoc():
+    if request.method == 'POST':
+        d_name = request.form['UName']
+        d_mail = request.form['email']
+        d_pass1 = request.form['password1']
+        d_phone = request.form['phone']
+        d_address = request.form['address']
+        d_dep = request.form['department']
+        d_exp = request.form['Experiance']
+
+        myCursor13 = mydb.cursor()
+        sql = "INSERT INTO dr (uname,pass,email,phone,address,depno,exp_years)VALUES(%s,%s,%s,%s,%s,%s,%s)"
+        val = (d_name,d_pass1,d_mail,d_phone,d_address,d_dep,d_exp)
+        myCursor13.execute(sql,val)
+        mydb.commit()  
+        return redirect(url_for('Adoctor'))
+    else:
+        return render_template('Sign_Up.html')
+
+@app.route('/SignUpPatient',methods=['POST','GET'])
+def SignUpPatient():
+    if request.method == 'POST':
+        p_name = request.form['UName']
+        p_mail = request.form['email']
+        p_pass1 = request.form['password1']
+        p_phone = request.form['phone']
+        p_address = request.form['address']
+        p_ssn = request.form['ssn']
+        p_weight = request.form['Weight']
+        p_date = request.form['Entry-Date']
+        p_disease = request.form['Disease']
+        myCursor13 = mydb.cursor()
+        sql = "INSERT INTO patient (uname,pass,email,phone,address,ssn,weight,entry_day,disease)VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        val = (p_name,p_pass1,p_mail,p_phone,p_address,p_ssn,p_weight,p_date,p_disease)
+        myCursor13.execute(sql,val)
+        mydb.commit()  
+        return redirect(url_for('Apatient'))
+    else:
+        return render_template('SignUp2.html')
 
 if __name__ == '__main__':
     app.run(debug=True) # dh by run server 3la el local host bta3e
