@@ -154,6 +154,18 @@ def Acomplains():
     return render_template('Acomplains.html' ,complains_data = myResult5)
 
 
+
+@app.route('/SignUP')
+def Hello225():
+    return render_template('Profession.html')
+
+@app.route('/SignUpDoc')
+def Doctor():
+    return render_template('Sign_Up.html')
+@app.route('/SignUpPachient')
+def Pachient():
+    return render_template('SignUp2.html')
+
 if __name__ == '__main__':
     app.run(debug=True) # dh by run server 3la el local host bta3e
 

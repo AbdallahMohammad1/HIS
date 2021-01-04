@@ -1,5 +1,19 @@
-{%extends 'base2.html'%}
-{%block head%}
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <link href="{{ url_for('static', filename='css/backend.css') }}" rel="stylesheet">
+
+   <link rel="icon" type="image/png" href="https://i.ibb.co/7y12V0s/Logo.png"/>
+
+   <title>Clinic Application!</title>
+
+
+
 
 <style>
 
@@ -164,27 +178,49 @@ color: #feffff;
 
         }
 
-
-
-
 </script>
 
 
-
-
-
-
-
 <title>Professions</title>
+</head>
+<body>
+   <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <a class="navbar-brand" href="{{ url_for('Aindex') }}">
+            <img class="logo" src="https://i.ibb.co/7y12V0s/Logo.png" alt="">
+            Dar Elfoad</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
 
-{%endblock%}
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+               <li class="nav-item active">
+               <a class="nav-link" href="http://127.0.0.1:5000/">Home <span class="sr-only">(current)</span></a>
+               </li>
+               <li class="nav-item">
+               <a class="nav-link" href="http://127.0.0.1:5000/signindr">sign in for dr</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="http://127.0.0.1:5000/signinpt">sign in for pt</a>
+                  </li>
+               <li class="nav-item">
+               <a class="nav-link" href="http://127.0.0.1:5000/SignUP">Sign Up</a>
+               </li>
 
-{%block body%}
+               <li class="nav-item">
+               <a class="nav-link" href="http://127.0.0.1:5000/contactus">contact us</a>
+               </li>
+            </ul>
+         </div>
+         </nav>
+   </div>
 
-<h2 class="Selectorr" >Please select Profession</h2>
+
+   <h2 class="Selectorr" ></h2>
 
 
-<form action="/SignUp" >
+<form action="/SignUpDoc" >
         <input type="image"  src="{{url_for('static',filename='images/wp2968489-medical-doctor-wallpaper.jpg')}}"
         alt="Doctor" id="Doctor" name="Doctor" class="img_Doc" onmouseover="Appear()" onmouseout="Disappear()"
         >
@@ -193,7 +229,7 @@ color: #feffff;
 </form>
 
 
-<form action="/SignUp2" >
+<form action="/SignUpPachient" >
         <input type="image"  src="{{url_for('static',filename='images/wallpaperflare.com_wallpaper.jpg')}}"
         alt="Doctor" id="Pachient" name="Pachient" class="img_Pachient" onmouseover="Appear2()" onmouseout="Disappear2()"
         >
@@ -204,4 +240,23 @@ color: #feffff;
 
 
 
-{%endblock%}
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
