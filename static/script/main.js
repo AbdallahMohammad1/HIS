@@ -11,6 +11,7 @@ window.onload =function(){
         box3.classList.add("animate__zoomIn")
     },2000);
 }
+
 $(function(){
     'use strict';
     $('[placeholder]').focus(function(){

@@ -1,6 +1,10 @@
-{% extends "index.html" %}
+<div class="container">
+  {% extends "index.html" %}
+</div>
+
 {% block head %}
-    <h3>phone number:01099889151</h3>
+<div class="container">
+  <h3>phone number:01099889151</h3>
     <h3>email:abdozza.206@gmail.com</h3>
     <form action="http://localhost:5000/contactus" method="POST">
       <div class="form-group">
@@ -22,4 +26,6 @@
         {{ error }}
         </div>
     {% endif %}
+</div>
+    
 {% endblock %}

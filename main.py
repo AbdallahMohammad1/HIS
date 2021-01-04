@@ -24,6 +24,7 @@ def signindr():
 def signinpt():
     return render_template('signinpt.html')
 
+
 @app.route('/contactus',methods = ['POST', 'GET'])
 def contact():
     if request.method == 'POST': ##check if there is post data
