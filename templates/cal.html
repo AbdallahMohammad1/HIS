@@ -1,0 +1,27 @@
+<div class="container">
+    {% extends "index.html" %}
+</div>
+{% block head %}
+<div class="container">
+    <h1 class="text-center animate__animated animate__slideInDown">Doctor</h1>
+    
+    <table class="table table-dark table-stripped">
+        <thead>
+        <tr>
+            <th scope="col">date</th>
+            <th scope="col">doctor name</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for x in range(0,s,2) %}
+            <tr>
+                <td>{{ doctors_data[x] }}</td>
+                <td>{{ doctors_data[x+1] }}</td>
+            </tr>
+            {% endfor %}
+    
+        </tbody>
+    </table>
+</div>
+{% endblock %}
