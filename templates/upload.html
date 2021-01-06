@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/7y12V0s/Logo.png"/>
+
+  <title>Clinic Application!</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+<title>SignIn</title>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+    color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background-image: url('https://wallpapercave.com/wp/wp2968502.jpg');
+    background-size:100% 100%;
+
+}
+::selection{
+  color: #fff;
+  background: #d43f8d;
+}
+.container{
+  width: 400px;
+  background:  #22326c;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 50px;
+  padding: 50px 35px 10px 35px;
+    background-size:500% 500% ;
+    animation:change 5s ease-in-out infinite;
+    opacity:0.9;
+}
+.container header{
+  font-size: 35px;
+  font-weight: 600;
+  margin: 0 0 30px 0;
+}
+.container .form-outer{
+  width: 100%;
+  overflow: hidden;
+}
+.container .form-outer form{
+  display: flex;
+  width: 400%;
+}
+.form-outer form .page{
+  width: 25%;
+  transition: margin-left 0.3s ease-in-out;
+}
+.form-outer form .page .title{
+  text-align: left;
+  font-size: 25px;
+  font-weight: 500;
+}
+.form-outer form .page .field{
+  width: 330px;
+  height: 45px;
+  margin: 45px 0;
+  display: flex;
+  position: relative;
+}
+form .page .field .label{
+  position: absolute;
+  top: -30px;
+  font-weight: 500;
+}
+form .page .field input{
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 100px;
+  padding-left: 15px;
+  font-size: 18px;
+}
+form .page .field select{
+  width: 100%;
+  padding-left: 10px;
+  font-size: 17px;
+  font-weight: 500;
+}
+form .page .field button{
+  width: 100%;
+  height: calc(100% + 5px);
+  border: none;
+  background: #d33f8d;
+  margin-top: -20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.5s ease;
+}
+form .page .field button:hover{
+  background: #000;
+}
+form .page .btns button{
+  margin-top: -20px!important;
+}
+form .page .btns button.prev{
+  margin-right: 3px;
+  font-size: 17px;
+}
+form .page .btns button.next{
+  margin-left: 3px;
+}
+.container .progress-bar{
+  display: flex;
+  margin: 100px ;
+  user-select: none;
+        flex-direction: row;
+    background:none;
+
+}
+.container .progress-bar .step{
+  text-align: center;
+  width: 100%;
+  position: relative;
+        flex-direction: row;
+    background:none;
+
+}
+.container .progress-bar .step p{
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 8px;
+        flex-direction: row;
+    background:none;
+
+}
+.progress-bar .step .bullet{
+  height: 29px;
+  width: 29px;
+  border: 2px solid #000;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  transition: 0.2s;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 25px;
+    flex-direction: row;
+    background:none;
+}
+.progress-bar .step .bullet.active{
+  border-color: #d43f8d;
+        flex-direction: row;
+
+}
+.progress-bar .step .bullet span{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+        flex-direction: row;
+
+}
+.progress-bar .step .bullet.active span{
+  display: none;
+}
+.progress-bar .step .bullet:before,
+.progress-bar .step .bullet:after{
+  position: absolute;
+  content: '';
+  bottom: 11px;
+  right: -35px;
+  height: 3px;
+  width: 39px;
+  background: #262626;
+    flex-direction: row;
+
+}
+.progress-bar .step .bullet.active:after{
+  background: #d43f8d;
+  transform: scaleX(0);
+    flex-direction: row;
+
+  transform-origin: left;
+  animation: animate 0.3s linear forwards;
+}
+@keyframes animate {
+  100%{
+    transform: scaleX(1);
+  }
+}
+.progress-bar .step:last-child .bullet:before,
+.progress-bar .step:last-child .bullet:after{
+  display: none;
+}
+.progress-bar .step p.active{
+  color: #d43f8d;
+  transition: 0.2s linear;
+    flex-direction: row;
+
+}
+.progress-bar .step .check{
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  font-size: 15px;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.progress-bar .step .check.active{
+  display: block;
+  color: #fff;
+}
+
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+
+
+
+
+.Neos{
+
+
+        font-size:70px;
+        text-shadow:0 0 20px #00ffff;
+
+
+}
+.Neos:after
+{
+        content: attr(data-text);
+
+        z-index:-1;
+        color: #ffffff;
+
+
+
+}
+
+
+
+
+
+
+
+
+@keyframes change {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+.navbar-brand{
+    text-shadow: 0 0 10px #00ffff;
+}
+.logo{
+    width:30px
+}
+</style>
+
+
+
+
+
+
+
+
+  </head>
+  <body>
+
+
+ <div class="container animate__animated  animate__fadeInRight">
+         <header class="Neos">Upload File</header>
+<img src="https://i.ibb.co/7y12V0s/Logo.png" style="width: 60%;">
+     <div class="progress-bar" style="display: none" >
+          <div class="step">
+              <p>Name..</p>
+    <div class="bullet">
+            <span>1</span>
+    </div>
+<div    class="check fas fa-check"></div>
+        </div>
+<div    class="step">
+          <p>Pass..</p>
+    <div class="bullet">
+            <span>2</span>
+    </div>
+        <div class="check fas fa-check">
+
+        </div>
+</div>
+
+         <div class="step">
+         <p>  Info..</p>
+<div class="bullet">
+            <span>3</span>
+</div>
+             <div class="check fas fa-check"></div>
+        </div>
+
+
+         <div class="step">
+             <p>Submit..</p>
+<div class="bullet">
+            <span>4</span>
+</div>
+
+<div class="check fas fa-check"></div>
+        </div>
+</div>
+{%for pdata in patient_data%}
+<div class="form-outer animate__animated animate__fadeInRight">
+    <form action="/Upload/{{pdata.1}}" method="POST" enctype="multipart/form-data">
+        {{  form.hidden_tag()  }}
+          <div class="page slide-page" >
+            <div class="field">
+                <div class="label" >Upload Image Or File</div>
+                    {{  form.file()  }}
+            </div>
+
+            <div class="field">
+                <div class="label" >Doctor's Comment</div>
+                    <span></span>
+                <input  type="text" name="comment" id="comment" 
+                oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
+            </div>
+            <div class="field">
+                <div class="label">Doctor's Name</div>
+                <select id="dname" name="dname">
+                {% for data in doctors_data: %}
+                <option value="{{data.0}}">{{data.0}}-{{data.1}}</option>
+                {% endfor %}
+                </select>
+            </div>  
+
+
+<div class="field btns">
+
+  {{ form.submit(  class="btn btn-primary"  )  }}
+  <button class="btn btn-warning"><a href=" http://127.0.0.1:5000/Apatient">back</a></button>
+
+</div>
+</div>
+</form>
+</div>
+</div>
+{%endfor%}
+
+<script>
+
+    <!-- Created By CodingNepal -->
+const slidePage = document.querySelector(".slide-page");
+const nextBtnFirst = document.querySelector(".firstNext");
+const prevBtnSec = document.querySelector(".prev-1");
+const nextBtnSec = document.querySelector(".next-1");
+const prevBtnThird = document.querySelector(".prev-2");
+const nextBtnThird = document.querySelector(".next-2");
+const prevBtnFourth = document.querySelector(".prev-3");
+const submitBtn = document.querySelector(".submit");
+const progressText = document.querySelectorAll(".step p");
+const progressCheck = document.querySelectorAll(".step .check");
+const bullet = document.querySelectorAll(".step .bullet");
+let current = 1;
+
+nextBtnFirst.addEventListener("click", function(event){
+    if(document. getElementById("UName"). value. length == 0)
+    {
+    alert("User Name or Email is Empty");
+    }
+    else {
+        event.preventDefault();
+        slidePage.style.marginLeft = "-25%";
+        slidePage.style.opacity = 1;
+
+        bullet[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        progressText[current - 1].classList.add("active");
+        current += 1;
+    }
+});
+nextBtnSec.addEventListener("click", function(event){
+    if(document. getElementById("password1"). value. length == 0)
+    {
+    alert("User Password is Empty");
+    }
+    else {
+        event.preventDefault();
+        slidePage.style.marginLeft = "-50%";
+        bullet[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        progressText[current - 1].classList.add("active");
+        current += 1;
+    }
+});
+nextBtnThird.addEventListener("click", function(event){
+    if(document. getElementById("phone"). value. length == 0&&document. getElementById("address"). value. length == 0)
+    {
+    alert("User Phone or Address is Empty");
+    }
+    else {
+  event.preventDefault();
+  slidePage.style.marginLeft = "-75%";
+  bullet[current - 1].classList.add("active");
+  progressCheck[current - 1].classList.add("active");
+  progressText[current - 1].classList.add("active");
+  current += 1;}
+});
+submitBtn.addEventListener("click", function(){
+
+  bullet[current - 1].classList.add("active");
+  progressCheck[current - 1].classList.add("active");
+  progressText[current - 1].classList.add("active");
+  current += 1;
+
+});
+
+prevBtnSec.addEventListener("click", function(event){
+  event.preventDefault();
+  slidePage.style.marginLeft = "0%";
+  bullet[current - 2].classList.remove("active");
+  progressCheck[current - 2].classList.remove("active");
+  progressText[current - 2].classList.remove("active");
+  current -= 1;
+});
+prevBtnThird.addEventListener("click", function(event){
+  event.preventDefault();
+  slidePage.style.marginLeft = "-25%";
+  bullet[current - 2].classList.remove("active");
+  progressCheck[current - 2].classList.remove("active");
+  progressText[current - 2].classList.remove("active");
+  current -= 1;
+});
+prevBtnFourth.addEventListener("click", function(event){
+  event.preventDefault();
+  slidePage.style.marginLeft = "-50%";
+  bullet[current - 2].classList.remove("active");
+  progressCheck[current - 2].classList.remove("active");
+  progressText[current - 2].classList.remove("active");
+  current -= 1;
+});
+var password = document.getElementById("password1")
+  , confirm_password = document.getElementById("password2");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+
+var MainMenu = (function() {
+    var MainMenu = function(config) {
+        config = config || {};
+        this.toggleBtn = $(config.toggleBtn);
+        this.menu = $(config.menu);
+        this.close = $(config.close);
+
+        this.init();
+        config = null;
+    };
+    // public interface
+    MainMenu.prototype = {
+        constructor: MainMenu,
+        init: function() {
+            this.eventManager();
+        },
+        eventManager: function() {
+            this.toggleBtn.on('click.openMenu', onButtonClickHandler.bind(this));
+            this.close.on('click.closeMenu', onCloseClickHandler.bind(this));
+        }
+    };
+    // private interface
+    function onButtonClickHandler(menu, evt) {
+        if (!this.menu.hasClass('open')) {
+            this.menu.addClass('open');
+        };
+
+    }
+
+    function onCloseClickHandler(evt) {
+        this.menu.removeClass('open')
+    }
+
+    function onDocumentClickHandler(evt) {
+        var $target = $(evt.target);
+
+        if (!$target.closest(this.menuForm).length && !$target.closest(this.menuContent).length && this.menu.hasClass('open')) {
+            this.menu.removeClass('open')
+        }
+    }
+
+    return MainMenu;
+})();
+
+
+$(document).ready(function() {
+    var mainMenu = new MainMenu({
+        menu: '.main-menu',
+        toggleBtn: '.main-menu-btn',
+        close: '.main-menu-close'
+    });
+});
+
+
+
+</script>
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,4 +1,8 @@
 from flask import Flask, render_template ,request,url_for,redirect,flash #import flask class
+from io import BytesIO
+from flask_wtf.file import FileField
+from wtforms import SubmitField
+from flask_wtf import Form
 
 import mysql.connector
 mydb = mysql.connector.connect(
@@ -11,6 +15,7 @@ myCursor = mydb.cursor()
 
 app = Flask(__name__) 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config['SECRET_KEY'] = "secret"
 
 @app.route('/')
 def index():
@@ -18,6 +23,7 @@ def index():
 
 @app.route('/signinpt',methods = ['POST', 'GET'])
 def signinpt():
+    form      = UploadForm()
     if request.method == 'POST': ##check if there is post data
         name = request.form['UName']
         pw = request.form['Password']
@@ -26,7 +32,7 @@ def signinpt():
         myResult = myCursor.fetchall()
         return render_template('profilept.html' ,doctors_data = myResult)
     else:
-        return render_template('signinpt.html')
+        return render_template('signinpt.html', form=form)
 
 @app.route('/signindr',methods = ['POST', 'GET'])
 def signindr():
@@ -191,6 +197,60 @@ def Pdelete(p_id):
     
     return redirect(url_for('Apatient'))
 
+@app.route('/Upload/<string:p_id>', methods = ['GET','POST'])
+def Upload(p_id):
+    form      = UploadForm()
+    if request.method == 'POST':
+        # d_id      = request.form['dname']
+        comment   = request.form['comment']
+        if form.validate_on_submit():
+            
+            file_name =form.file.data
+            print("FILE : {}".format(file_name.filename))
+
+            mc3 = mydb.cursor()
+            
+            sql = "UPDATE dr_patient SET dr_comments=%s,  images_name = %s , image_data = %s  WHERE patient_ssn = %s"
+            val = (comment,file_name.filename,file_name.read(),p_id)
+            mc3.execute(sql,val)
+            mydb.commit()
+            return render_template('upload.html', form=form )
+    else:
+        myCursor16 = mydb.cursor()
+        sql = "select * FROM dr_patient WHERE patient_ssn = %s"
+        val = (p_id, )
+        myCursor16.execute(sql,val)
+        myResult49 = myCursor16.fetchall()
+        myCursor.execute('SELECT id , uname From dr')
+        myResult9 = myCursor.fetchall()
+        return render_template('upload.html',doctors_data = myResult9,form=form,patient_data= myResult49)
+
+
+
+@app.route('/download/<string:p_id>', methods=["GET", "POST"])
+def download(p_id):
+
+    form = UploadForm()
+
+    if request.method == "POST":
+
+        sql = "SELECT * From dr_patient where patient_ssn =%s"
+        val = (p_id, )
+        myCursor.execute(sql,val)
+        myResult9 = myCursor.fetchall()
+        
+        for x in  myResult9 ():
+            name_v=x[2]
+            data_v=x[3]
+            break
+
+        return send_file(BytesIO(data_v), attachment_filename='flask.pdf', as_attachment=True)
+    return render_template("profilept.html", form=form)
+
+class UploadForm(Form):
+    file = FileField()
+    submit = SubmitField("submit")
+    download = SubmitField("download")
 
 @app.route('/Acomplains') 
 def Acomplains():
