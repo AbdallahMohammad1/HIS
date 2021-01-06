@@ -1,9 +1,20 @@
+from __future__ import print_function
 from flask import Flask, render_template ,request,url_for,redirect,flash #import flask class
+<<<<<<< HEAD
 from io import BytesIO
 from flask_wtf.file import FileField
 from wtforms import SubmitField
 from flask_wtf import Form
 
+=======
+import datetime
+import pickle
+import os.path
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+>>>>>>> 82947d2f4ce1a499fadc0ca6e244c4008b4da011
 import mysql.connector
 mydb = mysql.connector.connect(
     host = 'sql7.freemysqlhosting.net',
@@ -20,6 +31,54 @@ app.config['SECRET_KEY'] = "secret"
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/cal')
+def main():
+
+    """Shows basic usage of the Google Calendar API.
+    Prints the start and name of the next 10 events on the user's calendar.
+    """
+    creds = None
+    # The file token.pickle stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'client_secret.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+
+    service = build('calendar', 'v3', credentials=creds)
+
+    # Call the Calendar API
+    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+    print('Getting the upcoming  event')
+    events_result = service.events().list(calendarId='primary', timeMin=now,
+                                        maxResults=10, singleEvents=True,
+                                        orderBy='startTime').execute()
+    events = events_result.get('items', [])
+    i=0
+    m=[]
+    if not events:
+        print('No upcoming events found.')
+    
+    for event in events:
+        start = event['start'].get('dateTime', event['start'].get('date'))
+        m.append(start)
+        m.append(event['summary'])
+        i=i+1
+    print(len(m))
+    k=len(m)
+    return render_template('cal.html',doctors_data = m,s=k)
 
 @app.route('/signinpt',methods = ['POST', 'GET'])
 def signinpt():
