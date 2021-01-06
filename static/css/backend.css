@@ -133,6 +133,9 @@ h5{
     color:black;
     margin-top: 10px;
 }
+.comment a{
+    color: black;
+}
 @media (max-width: 767.98px) { 
     .slogan{
         font-size: 17px;

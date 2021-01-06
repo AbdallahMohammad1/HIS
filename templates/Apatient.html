@@ -23,6 +23,7 @@
             <th scope="col">Entery Date</th>
             <th scope="col">Disease</th>
             <th scope="col">Doctor's name</th>
+            <th scope="col">Doctor's Comment</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -39,11 +40,13 @@
             <td>{{ pdata.7 }}</td>
             <td>{{ pdata.8 }}</td>
             <td>{{ pdata.9 }}</td>
+            <td>{{ pdata.10 }}</td>
 
             <td>
                 <button class="btn btn-primary"><a href="/Pedit/{{ pdata.0 }}"><i class="fas fa-user-edit"></i>Edit</a></button>
                 <button class="btn btn-danger"><a href="/Pdelete/{{ pdata.0 }}"><i class="fas fa-user-minus"></i>Delete</a></button>
-                <button class="btn btn-info upload"><a href="/Upload/{{ pdata.0 }}"><i class="fas fa-upload"></i></i>Upload</a></button>
+                <button class="btn btn-info upload"><a href="/Upload/{{ pdata.0 }}"><i class="fas fa-upload"></i>Upload</a></button>
+                <button class="btn btn-light comment upload"><a href="/Comment/{{ pdata.0 }}"><i class="fas fa-comment"></i>Dr Comment</a></button>
             </td>
         </tr>
         {% endfor %}

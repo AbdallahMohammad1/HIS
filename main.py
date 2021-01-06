@@ -87,7 +87,7 @@ def signinpt():
         name = request.form['UName']
         pw = request.form['Password']
         print(name)
-        myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id WHERE patient.uname=(\'%s\') AND patient.pass=(\'%s\')"%(name,pw))
+        myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname ,dr_patient.dr_comments FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id WHERE patient.uname=(\'%s\') AND patient.pass=(\'%s\')"%(name,pw))
         myResult = myCursor.fetchall()
         return render_template('profilept.html' ,doctors_data = myResult, form=form)
     else:
@@ -208,13 +208,13 @@ def Apatient():
     if request.method == 'POST':
         p_id = request.form['p_id']
         myCursor10 = mydb.cursor()
-        sql = "SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id where ssn = %s"
+        sql = "SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname ,dr_patient.dr_comments FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id where ssn = %s"
         val = (p_id, )
         myCursor10.execute(sql,val)
         myResult7 =myCursor10.fetchall()
         return render_template('Apatient.html' ,patients_data = myResult7)
     else:
-        myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id")
+        myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname ,dr_patient.dr_comments FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id")
         myResult2 = myCursor.fetchall()
         return render_template('Apatient.html' , patients_data = myResult2)
 
@@ -256,12 +256,35 @@ def Pdelete(p_id):
     
     return redirect(url_for('Apatient'))
 
+@app.route('/Comment/<string:p_id>', methods = ['GET','POST'])
+def Comment(p_id):
+    if request.method == 'POST':
+        comment   = request.form['comment']
+        dr_id   = request.form['d_id']
+
+        myCursor20 = mydb.cursor()
+        sql = "UPDATE dr_patient SET dr_comments=%s,  dr_id = %s  WHERE patient_ssn = %s"
+        val = (comment,dr_id,p_id)
+        myCursor20.execute(sql,val)
+        mydb.commit()  
+        return redirect(url_for('Apatient'))
+    else:
+        myCursor16 = mydb.cursor()
+        sql = "select * FROM dr_patient WHERE patient_ssn = %s"
+        val = (p_id, )
+        myCursor16.execute(sql,val)
+        myResult49 = myCursor16.fetchall()
+        myCursor.execute('SELECT id , uname From dr')
+        myResult9 = myCursor.fetchall()
+        return render_template('comment.html', doctors_data = myResult9,patient_data = myResult49)
+
+
+
 @app.route('/Upload/<string:p_id>', methods = ['GET','POST'])
 def Upload(p_id):
     form      = UploadForm()
     if request.method == 'POST':
         # d_id      = request.form['dname']
-        comment   = request.form['comment']
         if form.validate_on_submit():
             
             file_name =form.file.data
@@ -269,8 +292,8 @@ def Upload(p_id):
 
             mc3 = mydb.cursor()
             
-            sql = "UPDATE dr_patient SET dr_comments=%s,  images_name = %s , image_data = %s  WHERE patient_ssn = %s"
-            val = (comment,file_name.filename,file_name.read(),p_id)
+            sql = "UPDATE dr_patient SET  images_name = %s , image_data = %s  WHERE patient_ssn = %s"
+            val = (file_name.filename,file_name.read(),p_id)
             mc3.execute(sql,val)
             mydb.commit()
             return render_template('upload.html', form=form )
@@ -280,9 +303,7 @@ def Upload(p_id):
         val = (p_id, )
         myCursor16.execute(sql,val)
         myResult49 = myCursor16.fetchall()
-        myCursor.execute('SELECT id , uname From dr')
-        myResult9 = myCursor.fetchall()
-        return render_template('upload.html',doctors_data = myResult9,form=form,patient_data= myResult49)
+        return render_template('upload.html',form=form,patient_data= myResult49)
 
 
 

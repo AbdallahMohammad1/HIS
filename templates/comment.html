@@ -1,4 +1,4 @@
-  <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -343,35 +343,27 @@ a {
     </div>
 {%for pdata in patient_data%}
   <div class="form-outer animate__animated animate__fadeInRight">
-      <form action="/Upload/{{pdata.1}}" method="POST" enctype="multipart/form-data">
+      <form action="/Comment/{{pdata.1}}" method="POST" enctype="multipart/form-data">
         {%endfor%}
-          {{  form.hidden_tag()  }}
-            <div class="page slide-page" >
-              <div class="field">
-                  <div class="label" >Upload Image Or File</div>
-                      {{  form.file()  }}
-              </div>
 
-              <!-- <div class="field">
+              <div class="field">
                   <div class="label" >Doctor's Comment</div>
                       <span></span>
                   <input  type="text" name="comment" id="comment" 
                   oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
-              </div> -->
-              <!-- <div class="field">
+              </div> 
+              <div class="field">
                   <div class="label">Doctor's Name</div>
-                  <select id="dname" name="dname">
+                  <select id="dname" name="d_id">
                   {% for data in doctors_data: %}
                   <option value="{{data.0}}">{{data.0}}-{{data.1}}</option>
                   {% endfor %}
                   </select>
-              </div>   -->
+              </div>  
 
 
         <div class="field btns">
-
-          {{ form.submit(  class="btn btn-primary"  )  }}
-
+            <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
         </div>
       </div>
     </form>
@@ -382,7 +374,7 @@ a {
 
 <script>
 
-    <!-- Created By CodingNepal -->
+    <!-- Created By CodingNepal
 const slidePage = document.querySelector(".slide-page");
 const nextBtnFirst = document.querySelector(".firstNext");
 const prevBtnSec = document.querySelector(".prev-1");
