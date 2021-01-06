@@ -303,7 +303,7 @@ def download(p_id):
             data_v=x[3]
             break
 
-        return send_file(BytesIO(data_v), attachment_filename='image.png', as_attachment=True)
+        return send_file(BytesIO(data_v), attachment_filename=name_v, as_attachment=True)
     return render_template("profilept.html", form=form)
 
 class UploadForm(Form):

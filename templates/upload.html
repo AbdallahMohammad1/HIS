@@ -1,4 +1,4 @@
-<!doctype html>
+  <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -260,12 +260,16 @@ a {
 
 }
 
-
-
-
-
-
-
+.back{
+  border: 2px double black;
+    position: fixed;
+    top: 5%;
+    left: 10%;
+    background-color: #35457A;
+}
+.back a{
+  color: white;
+}
 
 @keyframes change {
     0% {
@@ -366,13 +370,14 @@ a {
 <div class="field btns">
 
   {{ form.submit(  class="btn btn-primary"  )  }}
-  <button class="btn btn-warning"><a href=" http://127.0.0.1:5000/Apatient">back</a></button>
 
 </div>
 </div>
 </form>
 </div>
 </div>
+<button class="btn  back"><a href=" http://127.0.0.1:5000/Apatient">back</a></button>
+
 {%endfor%}
 
 <script>
@@ -549,3 +554,4 @@ $(document).ready(function() {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+
