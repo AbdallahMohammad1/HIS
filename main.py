@@ -1,12 +1,12 @@
 from __future__ import print_function
-from flask import Flask, render_template ,request,url_for,redirect,flash #import flask class
-<<<<<<< HEAD
+from flask import Flask, render_template ,request,url_for,redirect, send_file #import flask class
+# <<<<<<< HEAD
 from io import BytesIO
 from flask_wtf.file import FileField
 from wtforms import SubmitField
 from flask_wtf import Form
 
-=======
+# =======
 import datetime
 import pickle
 import os.path
@@ -14,7 +14,7 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
->>>>>>> 82947d2f4ce1a499fadc0ca6e244c4008b4da011
+# >>>>>>> 82947d2f4ce1a499fadc0ca6e244c4008b4da011
 import mysql.connector
 mydb = mysql.connector.connect(
     host = 'sql7.freemysqlhosting.net',
@@ -89,7 +89,7 @@ def signinpt():
         print(name)
         myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id WHERE patient.uname=(\'%s\') AND patient.pass=(\'%s\')"%(name,pw))
         myResult = myCursor.fetchall()
-        return render_template('profilept.html' ,doctors_data = myResult)
+        return render_template('profilept.html' ,doctors_data = myResult, form=form)
     else:
         return render_template('signinpt.html', form=form)
 
@@ -298,12 +298,12 @@ def download(p_id):
         myCursor.execute(sql,val)
         myResult9 = myCursor.fetchall()
         
-        for x in  myResult9 ():
+        for x in  myResult9 :
             name_v=x[2]
             data_v=x[3]
             break
 
-        return send_file(BytesIO(data_v), attachment_filename='flask.pdf', as_attachment=True)
+        return send_file(BytesIO(data_v), attachment_filename='image.png', as_attachment=True)
     return render_template("profilept.html", form=form)
 
 class UploadForm(Form):
