@@ -9,6 +9,11 @@
 
    <link href="{{ url_for('static', filename='css/backend.css') }}" rel="stylesheet">
 
+   <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
    <link rel="icon" type="image/png" href="https://i.ibb.co/7y12V0s/Logo.png"/>
 
 
@@ -600,7 +605,7 @@ a {
 <div class="check fas fa-check"></div>
         </div>
 </div>
-<div class="form-outer">
+<div class="form-outer animate__animated  animate__fadeInRight">
     <form action="http://127.0.0.1:5000/SignUpPatient" method="POST">
           <div class="page slide-page" >
             <div class="title" style="text-shadow:0 0 20px #00ffff;">Basic Info:</div>
