@@ -114,7 +114,7 @@ def contact():
             mydb = mysql.connector.connect(
             host = 'sql7.freemysqlhosting.net',
             user = 'sql7384553',
-            passwd = 'EBclءWXd7nQ',
+            passwd = 'EBclWXd7nQ',
             database = 'sql7384553'
             )
             mc = mydb.cursor()
