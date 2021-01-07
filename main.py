@@ -122,11 +122,11 @@ def contact():
             mc.execute('INSERT INTO %s (complain_text) VALUES (\'%s\')' % ('contact_us', name))
             mydb.commit()
             print(name)
-            return render_template('contactus.html',message="your complain has been recorded ")
+            return render_template('ConductUs-Modified3.html',message="your complain has been recorded ")
         except:
-            return render_template('contactus.html',error="Something Went wrong ")
+            return render_template('ConductUs-Modified3.html',error="Something Went wrong ")
     else:
-      return render_template('contactus.html')
+      return render_template('ConductUs-Modified3.html')
 """
 @app.route('/profiledr')
 def profiledr():
