@@ -148,6 +148,8 @@ def Aindex():
         myCursor3.execute("SELECT * FROM contact_us")
         myResult6 = myCursor3.fetchall()
         return render_template('Aindex.html', doctors_no = myCursor.rowcount ,p_no =myCursor2.rowcount,comp_no =myCursor3.rowcount)
+    else:
+        return render_template('error.html')
 
 @app.route('/login',methods = ['GET', 'POST'])
 def login():
@@ -184,6 +186,8 @@ def Adoctor():
             myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr LEFT JOIN dep on dr.depno = dep.dep_no LEFT JOIN dr_patient on dr_patient.dr_id =dr.id LEFT JOIN patient ON patient.ssn =dr_patient.patient_ssn")
             myResult = myCursor.fetchall()
             return render_template('Adoctor.html' ,doctors_data = myResult)
+    else:
+        return render_template('error.html')
 
 @app.route('/Dedit/<string:d_id>', methods = ['POST','GET'])
 def Dedit(d_id):
@@ -209,7 +213,8 @@ def Dedit(d_id):
             myCursor.execute(sql,val)
             myResult = myCursor.fetchall()
             return render_template('A_Dedit.html',doctors_data = myResult)
-    
+    else:
+        return render_template('error.html')
 
 @app.route('/Ddelete/<string:dr_id>', methods = ['GET'])
 def delete(dr_id):
@@ -223,6 +228,8 @@ def delete(dr_id):
         mydb.commit()
         
         return redirect(url_for('Adoctor'))
+    else:
+        return render_template('error.html')
 
 
 @app.route('/Apatient',methods =['POST','GET']) 
@@ -240,6 +247,8 @@ def Apatient():
             myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname ,dr_patient.dr_comments FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id")
             myResult2 = myCursor.fetchall()
             return render_template('Apatient.html' , patients_data = myResult2)
+    else:
+        return render_template('error.html')
 
 @app.route('/Pedit/<string:p_ssn>', methods = ['POST','GET'])
 def Pedit(p_ssn):
@@ -267,7 +276,8 @@ def Pedit(p_ssn):
             myCursor.execute(sql,val)
             myResult = myCursor.fetchall()
             return render_template('A_Pedit.html',patient_data = myResult)
-    
+    else:
+        return render_template('error.html')
 
 
 @app.route('/Pdelete/<string:p_id>', methods = ['GET'])
@@ -280,6 +290,8 @@ def Pdelete(p_id):
         mydb.commit()
         
         return redirect(url_for('Apatient'))
+    else:
+        return render_template('error.html')
 
 @app.route('/Comment/<string:p_id>', methods = ['GET','POST'])
 def Comment(p_id):
@@ -303,7 +315,8 @@ def Comment(p_id):
             myCursor.execute('SELECT id , uname From dr')
             myResult9 = myCursor.fetchall()
             return render_template('comment.html', doctors_data = myResult9,patient_data = myResult49)
-
+    else:
+        return render_template('error.html')
 
 
 @app.route('/Upload/<string:p_id>', methods = ['GET','POST'])
@@ -360,16 +373,20 @@ class UploadForm(Form):
 
 @app.route('/Acomplains') 
 def Acomplains():
-    myCursor.execute("SELECT * FROM contact_us")
-    myResult5 = myCursor.fetchall()
-    return render_template('Acomplains.html' ,complains_data = myResult5)
-
+    if 'username' in session:
+        myCursor.execute("SELECT * FROM contact_us")
+        myResult5 = myCursor.fetchall()
+        return render_template('Acomplains.html' ,complains_data = myResult5)
+    else:
+        return render_template('error.html')
 
 
 @app.route('/SignUP')
 def Hello225():
     if 'username' in session:
         return render_template('Profession.html')
+    else:
+        return render_template('error.html')
 
 @app.route('/SignUpDoc',methods= ['POST','GET'])
 def SignUpDoc():
@@ -391,9 +408,12 @@ def SignUpDoc():
             return redirect(url_for('Adoctor'))
         else:
             return render_template('Sign_Up.html')
+    else:
+        return render_template('error.html')
 
-    @app.route('/SignUpPatient',methods=['POST','GET'])
-    def SignUpPatient():
+@app.route('/SignUpPatient',methods=['POST','GET'])
+def SignUpPatient():
+    if 'username' in session:
         if request.method == 'POST':
             p_name = request.form['UName']
             p_mail = request.form['email']
@@ -412,6 +432,8 @@ def SignUpDoc():
             return redirect(url_for('Apatient'))
         else:
             return render_template('SignUp2.html')
+    else:
+        return render_template('error.html')
 
 if __name__ == '__main__':
     app.run(debug=True) # dh by run server 3la el local host bta3e
