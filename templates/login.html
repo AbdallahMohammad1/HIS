@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='css/backend.css') }}" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1352&q=80"/> -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/7y12V0s/Logo.png"/>
+    <script src="https://kit.fontawesome.com/be14abca77.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <form action="http://127.0.0.1:5000/login" method="POST" class="login">
+        <h3 class="text-center">Login</h3>
+        <input class="form-control" type="text" name="username" placeholder="UserName" autocomplete="off">
+        <input class="form-control" type="password" name="password" placeholder="Password" autocomplete="new-password">
+        <!--
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck1">
+            <label class="form-check-label" for="gridCheck1">
+            Remeber Me
+            </label>
+        </div>
+        -->
+        <input type="submit" value="Login" class="btn btn-primary btn-block ">
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='script/main.js')}}"></script>
+</body>
+</html>

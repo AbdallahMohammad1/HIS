@@ -57,6 +57,8 @@
         opacity:0;
         padding:0 20px;
         box-shadow:0 0 10px #00ffff;
+        border-radius: 15px;
+        background-color: #feffff;
 }
 .WelcomeDoc:after,.WelcomeDear:after{
         content: attr(data-text);
@@ -67,6 +69,28 @@
         z-index:-1;
         color:#00ffff;
 }
+.wrapper {
+    background: linear-gradient(-13deg, #65e9cf, #12bfff ,#6284e3, #045ED0);
+    position: absolute;
+    /* top: 13%; */
+    right: 0;
+    width: 35%;
+    height: 100%;
+    /* background: linear-gradient(-45deg, #EE7752, #E73C7E,#23A6D5,#23D5AB); */
+    background-size: 500% 500%;
+    opacity: 0.9;
+    z-index: -1;
+    -webkit-transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    -moz-transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transform: skewX(-38deg);
+    -moz-transform: skewX(-38deg);
+    transform: skewX(-31deg);
+}
+
 
 @keyframes change{
 0%{
@@ -113,6 +137,7 @@
 <title>Enter User</title>
 </head>
 <body>
+        <div class="wrapper"></div>
         <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div class="container-fluid">

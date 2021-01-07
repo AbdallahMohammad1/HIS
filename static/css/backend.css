@@ -2,7 +2,9 @@ body{
     box-sizing: content-box;
     background-color: #dbd6d62e;
     font-family: 'Poppins', sans-serif;
+    /* background: linear-gradient(5deg, #fcf8f2, #ffffff ,#ddb967, #dd752b); */
 }
+
 .nav-item{
     margin:0 25px;
 }
@@ -10,6 +12,74 @@ body{
     margin-left: 116px;
     text-shadow: 0 0 20px #00ffff;
 }
+
+.wrapper {
+    background: linear-gradient(-13deg, #65e9cf, #12bfff ,#6284e3, #045ED0);
+    position: absolute;
+    /* top: 13%; */
+    right: 0;
+    width: 35%;
+    height: 100%;
+    /* background: linear-gradient(-45deg, #EE7752, #E73C7E,#23A6D5,#23D5AB); */
+    background-size: 500% 500%;
+    opacity: 0.9;
+    z-index: -1;
+    -webkit-transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    -moz-transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transform: skewX(-38deg);
+    -moz-transform: skewX(-38deg);
+    transform: skewX(-31deg);
+}
+
+/*start login */
+.login{
+    width: 400px;
+    position: absolute;
+    background-color: white;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    padding:20px;
+    border-radius:25px;
+    border: 3vmin solid hsl(100 100% 60%);
+    border-image-slice: 1;
+    
+    /*  leverage cascade for cross-browser gradients  */
+    border-image-source: linear-gradient(
+    hsl(100 100% 60%),
+    50%,
+    hsl(200 100% 60%)
+    );
+    border-image-source: radial-gradient(
+    hsl(100 100% 60%),
+    75%,
+    hsl(200 100% 60%)
+    );
+    border-image-source: conic-gradient( hsl(346deg 92% 49%), hsl(241deg 92% 49% / 95%), hsl(14deg 88% 44%) );
+    place-content: center;
+    box-sizing: border-box;
+}
+.login h3{
+    margin-bottom: 20px;
+}
+.login .form-control, .login .btn {
+    border-radius:10px;
+    box-shadow: 0 4px 6px #ccc;
+    /*filter: drop-shadow( 0 2px 3px black);*/
+}
+.login .form-control{
+    margin-bottom: 10px;
+}
+.login .btn{
+    margin-top: 10px;
+    font-size: 20px;
+}
+/* end login */
+
 .logo{
     width:30px
 }
