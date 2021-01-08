@@ -169,7 +169,7 @@ def login():
             print("You Are An Admin")
         return redirect(url_for('Aindex'))
     else:
-        return render_template('login.html')
+        return render_template('Hello22.html')
 
 @app.route('/Adoctor',methods = ['POST', 'GET'])
 def Adoctor():

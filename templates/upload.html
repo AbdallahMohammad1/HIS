@@ -370,7 +370,7 @@ a {
 
         <div class="field btns">
 
-          {{ form.submit(  class="btn btn-primary"  )  }}
+          <button type="submit" class="Trier" onclick="Alarmme()">Upload</button>
 
         </div>
       </div>
@@ -412,6 +412,14 @@ nextBtnFirst.addEventListener("click", function(event){
         current += 1;
     }
 });
+
+
+function Alarmme(){
+
+    alert("Done Uploading")
+
+}
+
 nextBtnSec.addEventListener("click", function(event){
     if(document. getElementById("password1"). value. length == 0)
     {
