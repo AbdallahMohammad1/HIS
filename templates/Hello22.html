@@ -2,12 +2,16 @@
 <html lang="zxx">
 
 <head>
-	<title>Particles Login Form Form Responsive Widget Template :: w3layouts</title>
+	<title>Login</title>
 	<!-- Meta-Tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<meta name="keywords" content="Particles Login Form Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
-	<script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
@@ -33,7 +37,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 /*--reset--*/
 
 
-
+.animation{
+  animation: hinge 2s ease-in-out;
+}
 
 ul {
     list-style: none;
@@ -159,6 +165,8 @@ body {
     position: absolute;
     top: 40px;
     left: 29%;
+    box-shadow:0 0 10px #0ff;
+    border-radius:10px
 }
 
 .w3ls-login {
@@ -191,9 +199,10 @@ h1 {
 }
 
 .w3ls-login form {
+    border-radius: 15px;
     max-width: 500px;
     margin: 0 5vw;
-    padding: 3.5vw;
+    padding: 3vw;
     border-width: 5px 0;
     box-sizing: border-box;
     display: flex;
@@ -453,7 +462,7 @@ height:100%;
 	<div  id="particles-js" style="background-image: url(https://www.wallpaperup.com/uploads/wallpapers/2012/08/04/7995/cd9c3f8832247f3cff7cfff98e11fc76-1000.jpg);  " ></div>
 	<!-- //particles -->
 	<div class="w3ls-pos"  >
-		<h1 class="neon">Welcome  Admin</h1>
+		<h1 class="neon animation animate__animated">Welcome  Admin</h1>
 		<div class="w3ls-login box">
 			<!-- form starts here -->
 			<form action="http://127.0.0.1:5000/login" method="POST">
