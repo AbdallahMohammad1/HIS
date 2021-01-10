@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="icon" type="image/png" href="https://i.ibb.co/7y12V0s/Logo.png"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/7y12V0s/Logo.png"/>
 
-  <title>Clinic Application!</title>
+    <title>Clinic Application!</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <link
     rel="stylesheet"
@@ -34,7 +35,7 @@ body{
   justify-content: center;
   min-height: 100vh;
   overflow: hidden;
-  background-image: url('https://wallpapercave.com/wp/wp2968502.jpg');
+  background-image: url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1352&q=80');
     background-size:100% 100%;
 
 }
@@ -44,8 +45,9 @@ body{
 }
 .container{
   width: 400px;
-  background:  #22326c;
+  background:  #23A6D5;
   overflow: hidden;
+
   text-align: center;
   border-radius: 50px;
   padding: 50px 35px 10px 35px;
@@ -260,16 +262,12 @@ a {
 
 }
 
-.back{
-  border: 2px double black;
-    position: fixed;
-    top: 5%;
-    left: 10%;
-    background-color: #35457A;
-}
-.back a{
-  color: white;
-}
+
+
+
+
+
+
 
 @keyframes change {
     0% {
@@ -284,7 +282,7 @@ a {
 }
 
 .navbar-brand{
-    text-shadow: 0 0 10px #00ffff;
+    text-shadow: 0 0 20px #00ffff;
 }
 .logo{
     width:30px
@@ -299,82 +297,91 @@ a {
 
 
   </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <body>
 
 
- <div class="container animate__animated  animate__fadeInRight">
-         <header class="Neos">Upload File</header>
-    <img src="https://i.ibb.co/7y12V0s/Logo.png" style="width: 60%;">
-        <div class="progress-bar" style="display: none" >
-              <div class="step">
-                  <p>Name..</p>
-        <div class="bullet">
-                <span>1</span>
-        </div>
-    <div    class="check fas fa-check"></div>
-            </div>
-    <div    class="step">
-              <p>Pass..</p>
-        <div class="bullet">
-                <span>2</span>
-        </div>
-            <div class="check fas fa-check">
-
-            </div>
-    </div>
-
-            <div class="step">
-            <p>  Info..</p>
+ <div class="container animate__animated animate__fadeInRight ">
+         <header class="Neos">Dr Comment</header>
+<img src="https://i.ibb.co/7y12V0s/Logo.png" style="width: 70%;">
+     <div class="progress-bar" style="display: none" >
+          <div class="step">
+              <p>Name..</p>
     <div class="bullet">
-                <span>3</span>
+            <span>1</span>
     </div>
-                <div class="check fas fa-check"></div>
-            </div>
-
-
-            <div class="step">
-                <p>Submit..</p>
-    <div class="bullet">
-                <span>4</span>
-    </div>
-
-    <div class="check fas fa-check"></div>
-            </div>
-    </div>
-{%for pdata in patient_data%}
-  <div class="form-outer animate__animated animate__fadeInRight">
-      <form action="/Comment/{{pdata.1}}" method="POST" enctype="multipart/form-data">
-        {%endfor%}
-
-              <div class="field">
-                  <div class="label" >Doctor's Comment</div>
-                      <span></span>
-                  <input  type="text" name="comment" id="comment" 
-                  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
-              </div> 
-              <div class="field">
-                  <div class="label">Doctor's Name</div>
-                  <select id="dname" name="d_id">
-                  {% for data in doctors_data: %}
-                  <option value="{{data.0}}">{{data.0}}-{{data.1}}</option>
-                  {% endfor %}
-                  </select>
-              </div>  
-
-
-        <div class="field btns">
-            <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+<div    class="check fas fa-check"></div>
         </div>
-      </div>
-    </form>
-  </div>
+<div    class="step">
+          <p>Pass..</p>
+    <div class="bullet">
+            <span>2</span>
+    </div>
+        <div class="check fas fa-check">
+
+        </div>
 </div>
-<button class="btn  back"><a href=" http://127.0.0.1:5000/Apatient">back</a></button>
+
+         <div class="step">
+         <p>  Info..</p>
+<div class="bullet">
+            <span>3</span>
+</div>
+             <div class="check fas fa-check"></div>
+        </div>
 
 
+         <div class="step">
+             <p>Submit..</p>
+<div class="bullet">
+            <span>4</span>
+</div>
+
+<div class="check fas fa-check"></div>
+        </div>
+</div>
+<div class="form-outer animate__animated animate__fadeInRight">
+    <form action="/Comment/{{patientSsn}}" method="POST">
+          <div class="page slide-page" >
+            <div class="field">
+              <div class="label" >Doctor Comment</div>
+                <span></span>
+<input  type="text" name="comment" id="comment" >
+            </div>
+<div class="field">
+              <div class="label"   >Doctor Name</div>
+<select name="d_id" id="d_id">
+  {% for data in doctors_data %}
+  <option value="{{data.0}}">{{data.0}}- {{data.1}}</option>
+  {% endfor%}
+</select>
+</div>
+
+
+
+<div class="field btns">
+
+              <button class="submit">Submit</button>
+</div>
+</div>
+</form>
+</div>
+</div>
 <script>
 
-    <!-- Created By CodingNepal
+    <!-- Created By CodingNepal -->
 const slidePage = document.querySelector(".slide-page");
 const nextBtnFirst = document.querySelector(".firstNext");
 const prevBtnSec = document.querySelector(".prev-1");
@@ -546,4 +553,3 @@ $(document).ready(function() {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
-

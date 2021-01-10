@@ -17,10 +17,10 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 # >>>>>>> 82947d2f4ce1a499fadc0ca6e244c4008b4da011
 import mysql.connector
 mydb = mysql.connector.connect(
-    host = 'sql7.freemysqlhosting.net',
-    user = 'sql7384553',
-    passwd = 'EBclWXd7nQ',
-    database = 'sql7384553'
+    host = 'localhost',
+    user = 'root',
+    passwd = '',
+    database = 'his'
 )
 myCursor = mydb.cursor()
 
@@ -108,23 +108,17 @@ def signindr():
 @app.route('/contactus',methods = ['POST', 'GET'])
 def contact():
     if request.method == 'POST': ##check if there is post data
-        name = request.form['name']
-        try:
+        comment = request.form['name']
             #print(name)
-            mydb = mysql.connector.connect(
-            host = 'sql7.freemysqlhosting.net',
-            user = 'sql7384553',
-            passwd = 'EBclWXd7nQ',
-            database = 'sql7384553'
-            )
-            mc = mydb.cursor()
-            #sql = "INSERT INTO contact_us (complain_text) VALUES (name)"
-            mc.execute('INSERT INTO %s (complain_text) VALUES (\'%s\')' % ('contact_us', name))
-            mydb.commit()
-            print(name)
-            return render_template('ConductUs-Modified3.html',message="your complain has been recorded ")
-        except:
-            return render_template('ConductUs-Modified3.html',error="Something Went wrong ")
+        myCursor25 = mydb.cursor()
+        sql = "INSERT INTO contact_us (comments) VALUES (%s)"
+        val = (comment,)
+        myCursor25.execute(sql,val)
+        mydb.commit()
+        # print(name)
+        return render_template('ConductUs-Modified3.html',message="your complain has been recorded ")
+        # except:
+        #     return render_template('ConductUs-Modified3.html',error="Something Went wrong ")
     else:
       return render_template('ConductUs-Modified3.html')
 """
@@ -293,13 +287,13 @@ def Pdelete(p_id):
     else:
         return render_template('error.html')
 
-@app.route('/Comment/<string:p_id>', methods = ['GET','POST'])
+@app.route('/Comment/<string:p_id>', methods = ['POST','GET'])
 def Comment(p_id):
     if 'username' in session:
         if request.method == 'POST':
             comment   = request.form['comment']
             dr_id   = request.form['d_id']
-
+            
             myCursor20 = mydb.cursor()
             sql = "UPDATE dr_patient SET dr_comments=%s,  dr_id = %s  WHERE patient_ssn = %s"
             val = (comment,dr_id,p_id)
@@ -307,14 +301,15 @@ def Comment(p_id):
             mydb.commit()  
             return redirect(url_for('Apatient'))
         else:
-            myCursor16 = mydb.cursor()
-            sql = "select * FROM dr_patient WHERE patient_ssn = %s"
-            val = (p_id, )
-            myCursor16.execute(sql,val)
-            myResult49 = myCursor16.fetchall()
+            patient_ssn =p_id
+            # myCursor16 = mydb.cursor()
+            # sql = "select * FROM dr_patient WHERE patient_ssn = %s"
+            # val = (p_id, )
+            # myCursor16.execute(sql,val)
+            # myResult49 = myCursor16.fetchall()
             myCursor.execute('SELECT id , uname From dr')
             myResult9 = myCursor.fetchall()
-            return render_template('comment.html', doctors_data = myResult9,patient_data = myResult49)
+            return render_template('comment.html', doctors_data = myResult9, patientSsn = patient_ssn)
     else:
         return render_template('error.html')
 
@@ -342,7 +337,9 @@ def Upload(p_id):
         val = (p_id, )
         myCursor16.execute(sql,val)
         myResult49 = myCursor16.fetchall()
-        return render_template('upload.html',form=form,patient_data= myResult49)
+        patient_ssn=p_id
+        print (patient_ssn)
+        return render_template('upload.html',form=form,patient_data= myResult49,patientSsn = patient_ssn)
 
 
 

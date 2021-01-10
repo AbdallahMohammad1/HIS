@@ -44,7 +44,7 @@
 
             <td>
                 <button class="btn btn-primary"><a href="/Pedit/{{ pdata.0 }}"><i class="fas fa-user-edit"></i>Edit</a></button>
-                <button class="btn btn-danger"><a href="/Pdelete/{{ pdata.0 }}"><i class="fas fa-user-minus"></i>Delete</a></button>
+                <button class="btn btn-danger"><a href="/Pdelete/{{ pdata.0 }}" onclick="return confirm('Are YOU Sure You Want To Delete This Patient?')"><i class="fas fa-user-minus"></i>Delete</a></button>
                 <button class="btn btn-info upload"><a href="/Upload/{{ pdata.0 }}"><i class="fas fa-upload"></i>Upload</a></button>
                 <button class="btn btn-light comment upload"><a href="/Comment/{{ pdata.0 }}"><i class="fas fa-comment"></i>Dr Comment</a></button>
             </td>

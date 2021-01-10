@@ -341,10 +341,10 @@ a {
     <div class="check fas fa-check"></div>
             </div>
     </div>
-{%for pdata in patient_data%}
+<!-- {%for pdata in patient_data%} -->
   <div class="form-outer animate__animated animate__fadeInRight">
-      <form action="/Upload/{{pdata.1}}" method="POST" enctype="multipart/form-data">
-        {%endfor%}
+      <form action="/Upload/{{patientSsn}}" method="POST" enctype="multipart/form-data">
+        <!-- {%endfor%} -->
           {{  form.hidden_tag()  }}
             <div class="page slide-page" >
               <div class="field">
@@ -370,7 +370,7 @@ a {
 
         <div class="field btns">
 
-          <button type="submit" class="Trier" onclick="Alarmme()">Upload</button>
+          {{ form.submit(  class="btn btn-primary"  )  }}
 
         </div>
       </div>
