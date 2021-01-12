@@ -39,6 +39,12 @@ body{
     background-size:100% 100%;
 
 }
+.errormsg{
+  position: fixed;
+  top:30%;
+  left:30%;
+}
+
 ::selection{
   color: #fff;
   background: #d43f8d;
@@ -407,6 +413,11 @@ a {
 </form>
 </div>
 </div>
+    {% if error%}
+      <div class="alert alert-danger errormsg" role="alert">
+        {{ error }}
+        </div>
+    {% endif %}
 <script>
 
     <!-- Created By CodingNepal -->

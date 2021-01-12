@@ -38,6 +38,11 @@ body{
     background-size:100% 100%;
 
 }
+.msg{
+  position:fixed;
+  top:30%;
+  left:5%;
+}
 ::selection{
   color: #fff;
   background: #d43f8d;
@@ -379,7 +384,17 @@ a {
 </div>
 <button class="btn  back"><a href=" http://127.0.0.1:5000/Apatient">back</a></button>
 
+{% if Msg%}
+      <div class="alert alert-success msg" role="alert">
+        {{ Msg }}
+      </div>
+    {% endif %}
 
+    {% if error%}
+      <div class="alert alert-danger msg" role="alert">
+        {{ error }}
+        </div>
+    {% endif %}
 <script>
 
     <!-- Created By CodingNepal -->

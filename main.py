@@ -89,7 +89,10 @@ def signinpt():
         print(name)
         myCursor.execute("SELECT ssn , patient.uname , patient.pass , patient.email , patient.phone , patient.address , patient.weight ,patient.entry_day , patient.disease , dr.uname ,dr_patient.dr_comments FROM patient LEFT JOIN dr_patient on dr_patient.patient_ssn =patient.ssn LEFT JOIN dr ON dr.id =dr_patient.dr_id WHERE patient.uname=(\'%s\') AND patient.pass=(\'%s\')"%(name,pw))
         myResult = myCursor.fetchall()
-        return render_template('profilept.html' ,doctors_data = myResult, form=form)
+        if myCursor.rowcount > 0:
+            return render_template('profilept.html' ,doctors_data = myResult, form=form)
+        else:
+            return render_template('signinpt.html' , form=form ,error="Username or Passowrd Are Not Valid")
     else:
         return render_template('signinpt.html', form=form)
 
@@ -98,9 +101,19 @@ def signindr():
     if request.method == 'POST': ##check if there is post data
         name = request.form['UName']
         pw = request.form['Password']
+        
         myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr LEFT JOIN dep on dr.depno = dep.dep_no LEFT JOIN dr_patient on dr_patient.dr_id =dr.id LEFT JOIN patient ON patient.ssn =dr_patient.patient_ssn WHERE dr.uname=(\'%s\') AND dr.pass=(\'%s\')"%(name,pw))
         myResult = myCursor.fetchall()
-        return render_template('profiledr.html' ,doctors_data = myResult)
+        if myCursor.rowcount > 0:
+            return render_template('profiledr.html')
+        else:
+            return render_template('signindr.html',error="Username or Passowrd Are Not Valid")
+
+        # name = request.form['UName']
+        # pw = request.form['Password']
+        # myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr LEFT JOIN dep on dr.depno = dep.dep_no LEFT JOIN dr_patient on dr_patient.dr_id =dr.id LEFT JOIN patient ON patient.ssn =dr_patient.patient_ssn WHERE dr.uname=(\'%s\') AND dr.pass=(\'%s\')"%(name,pw))
+        # myResult = myCursor.fetchall()
+        # return render_template('profiledr.html' ,doctors_data = myResult)
     else:
         return render_template('signindr.html')
 
@@ -110,15 +123,16 @@ def contact():
     if request.method == 'POST': ##check if there is post data
         comment = request.form['name']
             #print(name)
-        myCursor25 = mydb.cursor()
-        sql = "INSERT INTO contact_us (comments) VALUES (%s)"
-        val = (comment,)
-        myCursor25.execute(sql,val)
-        mydb.commit()
-        # print(name)
-        return render_template('ConductUs-Modified3.html',message="your complain has been recorded ")
-        # except:
-        #     return render_template('ConductUs-Modified3.html',error="Something Went wrong ")
+        try:
+            myCursor25 = mydb.cursor()
+            sql = "INSERT INTO contact_us (comments) VALUES (%s)"
+            val = (comment,)
+            myCursor25.execute(sql,val)
+            mydb.commit()
+            # print(name)
+            return render_template('ConductUs-Modified3.html',message="your complain has been recorded ")
+        except:
+            return render_template('ConductUs-Modified3.html',error="Something Went wrong ")
     else:
       return render_template('ConductUs-Modified3.html')
 """
@@ -330,7 +344,11 @@ def Upload(p_id):
             val = (file_name.filename,file_name.read(),p_id)
             mc3.execute(sql,val)
             mydb.commit()
-            return render_template('upload.html', form=form )
+            if mc3.rowcount > 0:
+                return render_template('upload.html', form=form ,Msg = "1 record is Uploaded" )
+            else:
+                return render_template('upload.html', form=form ,error = "There Is An Error While Uploading The File" )
+            # return render_template('upload.html', form=form )
     else:
         myCursor16 = mydb.cursor()
         sql = "select * FROM dr_patient WHERE patient_ssn = %s"

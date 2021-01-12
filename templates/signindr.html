@@ -27,6 +27,11 @@
   outline: none;
   font-family: 'Poppins', sans-serif;
 }
+.errormsg{
+  position: fixed;
+  top:30%;
+  left:30%;
+}
 body{
     color: #ffffff;
   display: flex;
@@ -405,6 +410,11 @@ a {
 </form>
 </div>
 </div>
+    {% if error%}
+      <div class="alert alert-danger errormsg" role="alert">
+        {{ error }}
+        </div>
+    {% endif %}
 <script>
 
     <!-- Created By CodingNepal -->
