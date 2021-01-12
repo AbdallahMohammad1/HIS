@@ -105,7 +105,7 @@ def signindr():
         myCursor.execute("SELECT id,dr.uname,dr.pass,dr.email,dr.phone,dr.address,dep_name,exp_years,patient.uname FROM dr LEFT JOIN dep on dr.depno = dep.dep_no LEFT JOIN dr_patient on dr_patient.dr_id =dr.id LEFT JOIN patient ON patient.ssn =dr_patient.patient_ssn WHERE dr.uname=(\'%s\') AND dr.pass=(\'%s\')"%(name,pw))
         myResult = myCursor.fetchall()
         if myCursor.rowcount > 0:
-            return render_template('profiledr.html')
+            return render_template('profiledr.html',doctors_data = myResult)
         else:
             return render_template('signindr.html',error="Username or Passowrd Are Not Valid")
 
@@ -173,9 +173,10 @@ def login():
             return redirect(url_for('index'))
         else:
             session['username'] = username
+            session['password'] = password
             print (session['username'])
             print("You Are An Admin")
-        return redirect(url_for('Aindex'))
+            return redirect(url_for('Aindex'))
     else:
         return render_template('Hello22.html')
 
@@ -277,13 +278,29 @@ def Pedit(p_ssn):
             val = (p_ssn2,p_name,p_pass1,p_mail,p_phone,p_address,p_weight,p_date ,p_disease ,p_ssn)
             myCursor20.execute(sql,val)
             mydb.commit()  
+
+            comment   = request.form['comment']
+            dr_id   = request.form['d_id']
+            myCursor28 = mydb.cursor()
+            sql = "UPDATE dr_patient SET dr_comments = %s , dr_id = %s  WHERE patient_ssn = %s"
+            val = (comment , dr_id ,p_ssn)
+            myCursor28.execute(sql,val)
+            mydb.commit() 
             return redirect(url_for('Apatient'))
         else:
             sql = 'SELECt * FROM patient WHERE ssn = %s'
             val = (p_ssn, )
             myCursor.execute(sql,val)
             myResult = myCursor.fetchall()
-            return render_template('A_Pedit.html',patient_data = myResult)
+
+            sql = 'SELECt * FROM dr_patient WHERE patient_ssn = %s'
+            val = (p_ssn, )
+            myCursor.execute(sql,val)
+            myResult70 = myCursor.fetchall()
+
+            myCursor.execute('SELECT id , uname From dr')
+            myResult9 = myCursor.fetchall()
+            return render_template('A_Pedit.html',patient_data = myResult ,doctors_data = myResult9 ,doctor_comment = myResult70)
     else:
         return render_template('error.html')
 
@@ -309,7 +326,7 @@ def Comment(p_id):
             dr_id   = request.form['d_id']
             
             myCursor20 = mydb.cursor()
-            sql = "UPDATE dr_patient SET dr_comments=%s,  dr_id = %s  WHERE patient_ssn = %s"
+            sql = "INSERT dr_patient SET dr_comments=%s,  dr_id = %s  , patient_ssn = %s"
             val = (comment,dr_id,p_id)
             myCursor20.execute(sql,val)
             mydb.commit()  

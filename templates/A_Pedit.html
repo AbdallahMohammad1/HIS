@@ -659,6 +659,28 @@ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 </div>
 <div class="page">
+  <div class="title" style="text-shadow:0 0 20px #00ffff;">Info</div>
+  <div class="field">
+    <div class="label" >Doctor Comment</div>
+      <span></span>
+      {% for cdata in doctor_comment %}
+<input  type="text" name="comment" id="comment" value="{{cdata.4}}">
+      {% endfor%}
+  </div>
+<div class="field">
+    <div class="label"   >Doctor Name</div>
+<select name="d_id" id="d_id">
+{% for data in doctors_data %}
+<option value="{{data.0}}">{{data.0}}- {{data.1}}</option>
+{% endfor%}
+</select>
+</div>
+<div class="field btns" style="margin-top:+95px">
+    <button class="prev-3 prev" style="margin-top:+30px">Previous</button>
+    <button class="next-3 next" style="margin-top:+30px">Next</button>
+</div>
+</div>
+<div class="page">
             <div class="title" style="text-shadow:0 0 20px #00ffff;">Specifications</div>
 <div class="field">
               <div class="label">Weight</div>
@@ -676,7 +698,7 @@ oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
  oninput="setCustomValidity('')" onvalid="this.setCustomValidity('')">
 </div>
 <div class="field btns">
-              <button class="prev-3 prev">Previous</button>
+              <button class="prev-4 prev">Previous</button>
               <button class="submit">Submit</button>
 </div>
 </div>
@@ -693,7 +715,9 @@ const prevBtnSec = document.querySelector(".prev-1");
 const nextBtnSec = document.querySelector(".next-1");
 const prevBtnThird = document.querySelector(".prev-2");
 const nextBtnThird = document.querySelector(".next-2");
+const nextBtnFourth = document.querySelector(".next-3");
 const prevBtnFourth = document.querySelector(".prev-3");
+const prevBtnFifth = document.querySelector(".prev-4");
 const submitBtn = document.querySelector(".submit");
 const progressText = document.querySelectorAll(".step p");
 const progressCheck = document.querySelectorAll(".step .check");
@@ -743,6 +767,21 @@ nextBtnThird.addEventListener("click", function(event){
   progressText[current - 1].classList.add("active");
   current += 1;}
 });
+
+nextBtnFourth.addEventListener("click", function(event){
+    if(document. getElementById("phone"). value. length == 0&&document. getElementById("address"). value. length == 0)
+    {
+    alert("User Phone or Address is Empty");
+    }
+    else {
+  event.preventDefault();
+  slidePage.style.marginLeft = "-100%";
+  bullet[current - 1].classList.add("active");
+  progressCheck[current - 1].classList.add("active");
+  progressText[current - 1].classList.add("active");
+  current += 1;}
+});
+
 submitBtn.addEventListener("click", function(){
 
   bullet[current - 1].classList.add("active");
@@ -771,6 +810,14 @@ prevBtnThird.addEventListener("click", function(event){
 prevBtnFourth.addEventListener("click", function(event){
   event.preventDefault();
   slidePage.style.marginLeft = "-50%";
+  bullet[current - 2].classList.remove("active");
+  progressCheck[current - 2].classList.remove("active");
+  progressText[current - 2].classList.remove("active");
+  current -= 1;
+});
+prevBtnFifth.addEventListener("click", function(event){
+  event.preventDefault();
+  slidePage.style.marginLeft = "-75%";
   bullet[current - 2].classList.remove("active");
   progressCheck[current - 2].classList.remove("active");
   progressText[current - 2].classList.remove("active");
