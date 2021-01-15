@@ -37,10 +37,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 /*--reset--*/
 
 
-.animation{
-  animation: hinge 2s ease-in-out;
-}
 
+.glass{
+  position: absolute;
+  width:900px;
+  height:50vh;
+  z-index: 100;
+  top:30%;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: invert(1);
+}
+#glass{
+  visibility:hidden;
+}
+.hide{
+  display: none;
+}
 ul {
     list-style: none;
     margin: 0px;
@@ -462,7 +475,7 @@ height:100%;
 	<div  id="particles-js" style="background-image: url(https://www.wallpaperup.com/uploads/wallpapers/2012/08/04/7995/cd9c3f8832247f3cff7cfff98e11fc76-1000.jpg);  " ></div>
 	<!-- //particles -->
 	<div class="w3ls-pos"  >
-		<h1 class="neon animation animate__animated">Welcome  Admin</h1>
+		<h1 class="neon animate__animated" id="animation">Welcome Admin</h1>
 		<div class="w3ls-login box">
 			<!-- form starts here -->
 			<form action="http://127.0.0.1:5000/login" method="POST">
@@ -485,7 +498,11 @@ height:100%;
 			<p class="neon">To the Great extend of Control
 
 			</p>
-		</div>
+    </div>
+    <audio autoplay id="playAudio">
+      <source src="{{ url_for('static', filename='track/Black Mirror.mp3') }}">
+    </audio>
+    <img src="{{ url_for('static', filename='images/glass.png') }}" alt="glass" id="glass" class="glass animate__animated">
 		<!--//copyright-->
 	</div>
 
@@ -882,7 +899,18 @@ var pJS = function(tag_id, params){
 
 
   };
-
+  var glass =document.getElementById('glass');
+  window.onload =function(){
+    setTimeout(function(){
+      glass.style.visibility = 'visible';
+      glass.classList.add('glass');
+    },8700);
+    setTimeout(function(){
+      glass.classList.add('animate__fadeOut');
+      glass.classList.add('hide');
+    },14000)
+    document.getElementById('playAudio').play();
+  }
 
   pJS.fn.particle.prototype.draw = function() {
 
